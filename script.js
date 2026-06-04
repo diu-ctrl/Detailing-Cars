@@ -233,32 +233,10 @@ function handleBooking(e) {
     });
 
   function showSuccessState() {
-    // Format the WhatsApp message with details
-    const adminWaNumber = '919979787087';
-    const waMessage = `🚗 *New Detailing Booking Request* 🚗\n` +
-      `---------------------------------\n` +
-      `👤 *Client:* ${firstName} ${lastName}\n` +
-      `📞 *Phone:* ${phone}\n` +
-      `✉️ *Email:* ${email || 'Not provided'}\n` +
-      `🚙 *Vehicle:* ${vehicleType}\n` +
-      `🔧 *Service:* ${service}\n` +
-      `📅 *Date:* ${preferredDate}\n` +
-      `📍 *Address:* ${address}\n` +
-      `📝 *Notes:* ${notes || 'None'}\n` +
-      `---------------------------------\n` +
-      `Please confirm my slot. Thank you!`;
-    const waUrl = `https://wa.me/${adminWaNumber}?text=${encodeURIComponent(waMessage)}`;
-
     setTimeout(() => {
       form.style.display = 'none';
       success.style.display = 'block';
       success.style.animation = 'heroIn 0.5s ease forwards';
-
-      // Dynamically update the WhatsApp confirmation button URL
-      const waBtn = document.getElementById('whatsappConfirmBtn');
-      if (waBtn) {
-        waBtn.href = waUrl;
-      }
 
       // Scroll to success
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
