@@ -195,28 +195,78 @@ function handleBooking(e) {
     createdAt: new Date().toISOString()
   };
 
-  // Save to localStorage
-  const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
-  appts.unshift(newAppt);
-  localStorage.setItem('appointments', JSON.stringify(appts));
-
   // Loading state
   btn.innerHTML = '<span>Sending...</span>';
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  // Simulate form submission
-  setTimeout(() => {
-    form.style.display = 'none';
-    success.style.display = 'block';
-    success.style.animation = 'heroIn 0.5s ease forwards';
+  // Sync to Cloud and LocalStorage
+  const binUrl = 'https://extendsclass.com/api/json-storage/bin/abbdffb';
+  
+  fetch(binUrl)
+    .then(res => res.json())
+    .then(data => {
+      const appointments = data.appointments || [];
+      appointments.unshift(newAppt);
+      
+      // Update cloud bin
+      return fetch(binUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ appointments })
+      });
+    })
+    .then(() => {
+      // Also update local storage cache
+      const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
+      appts.unshift(newAppt);
+      localStorage.setItem('appointments', JSON.stringify(appts));
+      showSuccessState();
+    })
+    .catch(err => {
+      console.error('Cloud sync error, falling back to LocalStorage:', err);
+      // Fallback: save to localStorage only
+      const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
+      appts.unshift(newAppt);
+      localStorage.setItem('appointments', JSON.stringify(appts));
+      showSuccessState();
+    });
 
-    // Scroll to success
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  function showSuccessState() {
+    // Format the WhatsApp message with details
+    const adminWaNumber = '919979787087';
+    const waMessage = `🚗 *New Detailing Booking Request* 🚗\n` +
+      `---------------------------------\n` +
+      `👤 *Client:* ${firstName} ${lastName}\n` +
+      `📞 *Phone:* ${phone}\n` +
+      `✉️ *Email:* ${email || 'Not provided'}\n` +
+      `🚙 *Vehicle:* ${vehicleType}\n` +
+      `🔧 *Service:* ${service}\n` +
+      `📅 *Date:* ${preferredDate}\n` +
+      `📍 *Address:* ${address}\n` +
+      `📝 *Notes:* ${notes || 'None'}\n` +
+      `---------------------------------\n` +
+      `Please confirm my slot. Thank you!`;
+    const waUrl = `https://wa.me/${adminWaNumber}?text=${encodeURIComponent(waMessage)}`;
 
-    // Confetti-style celebration (CSS only)
-    spawnConfetti();
-  }, 1500);
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      success.style.animation = 'heroIn 0.5s ease forwards';
+
+      // Dynamically update the WhatsApp confirmation button URL
+      const waBtn = document.getElementById('whatsappConfirmBtn');
+      if (waBtn) {
+        waBtn.href = waUrl;
+      }
+
+      // Scroll to success
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Confetti-style celebration (CSS only)
+      spawnConfetti();
+    }, 800);
+  }
 }
 
 // ─── Simple Confetti Effect ───────────────────────────────────────────────────
