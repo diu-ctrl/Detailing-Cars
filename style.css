@@ -1513,6 +1513,42 @@ input, select, textarea { font-family: var(--font); }
 .success-icon { font-size: 60px; margin-bottom: 20px; }
 .form-success h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
 .form-success p { color: var(--text-muted); margin-bottom: 24px; font-size: 15px; }
+.btn-whatsapp-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: var(--white) !important;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.btn-whatsapp-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.55);
+}
+.call-instead-link {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+  opacity: 0.8;
+}
+.call-instead-link:hover {
+  color: var(--primary) !important;
+  opacity: 1;
+  text-decoration: underline;
+}
 
 /* ===================================
    HOW IT WORKS SECTION
