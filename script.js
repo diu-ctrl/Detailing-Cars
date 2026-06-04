@@ -201,7 +201,7 @@ function handleBooking(e) {
   btn.style.opacity = '0.7';
 
   // Sync to Cloud and LocalStorage
-  const binUrl = 'https://extendsclass.com/api/json-storage/bin/abbdffb';
+  const binUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn/appointments';
   
   fetch(binUrl)
     .then(res => res.json())
