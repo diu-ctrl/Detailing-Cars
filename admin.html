@@ -627,9 +627,85 @@
         min-width: 0;
       }
     }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 11000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: rgba(26, 28, 34, 0.95);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      color: var(--white);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 300px;
+      pointer-events: auto;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast-msg.show {
+      transform: translateX(0);
+    }
+
+    .toast-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--primary-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .toast-content {
+      flex-grow: 1;
+    }
+
+    .toast-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .toast-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Keyframes */
+    @keyframes new-row-flash {
+      0% {
+        background-color: rgba(245, 168, 0, 0.25);
+      }
+      100% {
+        background-color: transparent;
+      }
+    }
+    
+    .new-row-flash {
+      animation: new-row-flash 2.5s ease-out;
+    }
   </style>
 </head>
 <body>
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
 
   <!-- Login Wall -->
   <div class="login-wall" id="loginWall">
@@ -781,6 +857,81 @@
     let currentFilter = 'All';
     let searchQuery = '';
     let appointmentsList = [];
+    let knownAppointmentIds = new Set();
+
+    // Safe Date Formatter helper to avoid crashes on invalid/empty dates
+    function safeFormatDate(dateVal, options, fallbackText = 'Not set') {
+      if (!dateVal) return fallbackText;
+      const d = new Date(dateVal);
+      if (!isNaN(d.getTime())) {
+        return d.toLocaleDateString('en-IN', options);
+      }
+      return dateVal; // If parsing fails, fall back to showing raw date value
+    }
+
+    // Audio chime notification synthesizer via Web Audio API
+    function playChime() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        
+        const playNote = (freq, startTime, duration) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          
+          gain.gain.setValueAtTime(0, startTime);
+          gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+          
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          
+          osc.start(startTime);
+          osc.stop(startTime + duration);
+        };
+        
+        const now = ctx.currentTime;
+        playNote(659.25, now, 0.4); // E5 note
+        playNote(880.00, now + 0.12, 0.6); // A5 note
+      } catch (e) {
+        console.error('Audio chime error:', e);
+      }
+    }
+
+    // Custom Live Notification Toast
+    function showNotificationToast(title, message) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      
+      const toast = document.createElement('div');
+      toast.className = 'toast-msg';
+      toast.innerHTML = `
+        <div class="toast-icon">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-text">${message}</div>
+        </div>
+      `;
+      container.appendChild(toast);
+      
+      // Force reflow
+      toast.offsetHeight;
+      toast.classList.add('show');
+      
+      playChime();
+      
+      // Auto-remove after 4 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 4000);
+    }
 
     // Check Session state
     window.onload = function() {
@@ -800,6 +951,23 @@
           }
         });
       }
+
+      // Sync across tabs via storage event listener
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'appointments') {
+          loadAppointments(true);
+        }
+      });
+
+      // Periodic check polling loop (fallback checks every 2s)
+      let lastRawStorage = localStorage.getItem('appointments') || '[]';
+      setInterval(() => {
+        const currentRaw = localStorage.getItem('appointments') || '[]';
+        if (currentRaw !== lastRawStorage) {
+          lastRawStorage = currentRaw;
+          loadAppointments(true);
+        }
+      }, 2000);
     };
 
     function handleLogin(e) {
@@ -828,14 +996,38 @@
       loadAppointments();
     }
 
-    function loadAppointments() {
-      appointmentsList = JSON.parse(localStorage.getItem('appointments') || '[]');
-      updateDashboard();
+    function loadAppointments(isUpdate = false) {
+      const raw = localStorage.getItem('appointments');
+      const newList = JSON.parse(raw || '[]');
+      
+      const newIds = [];
+      if (isUpdate) {
+        newList.forEach(appt => {
+          if (!knownAppointmentIds.has(appt.id)) {
+            newIds.push(appt.id);
+            knownAppointmentIds.add(appt.id);
+            
+            // Highlight and toast only actual user bookings
+            if (!appt.id.startsWith('APT-MOCK-')) {
+              showNotificationToast(
+                'New Booking Request!',
+                `${appt.firstName || ''} ${appt.lastName || ''} — ${appt.service || ''}`
+              );
+            }
+          }
+        });
+      } else {
+        knownAppointmentIds.clear();
+        newList.forEach(appt => knownAppointmentIds.add(appt.id));
+      }
+      
+      appointmentsList = newList;
+      updateDashboard(newIds);
     }
 
-    function updateDashboard() {
+    function updateDashboard(newIds = []) {
       calculateMetrics();
-      renderTable();
+      renderTable(newIds);
     }
 
     function calculateMetrics() {
@@ -863,7 +1055,7 @@
       document.getElementById('totalRevenue').textContent = '₹' + revenue.toLocaleString('en-IN');
     }
 
-    function renderTable() {
+    function renderTable(newIds = []) {
       const tbody = document.getElementById('apptTableBody');
       tbody.innerHTML = '';
 
@@ -874,9 +1066,9 @@
         // Search Filter
         if (searchQuery.trim() !== '') {
           const query = searchQuery.toLowerCase();
-          const fullName = `${appt.firstName} ${appt.lastName}`.toLowerCase();
-          const phone = appt.phone.toLowerCase();
-          const address = appt.address.toLowerCase();
+          const fullName = `${appt.firstName || ''} ${appt.lastName || ''}`.toLowerCase();
+          const phone = (appt.phone || '').toLowerCase();
+          const address = (appt.address || '').toLowerCase();
           const email = (appt.email || '').toLowerCase();
           return fullName.includes(query) || phone.includes(query) || address.includes(query) || email.includes(query);
         }
@@ -892,32 +1084,35 @@
 
       filtered.forEach(appt => {
         const row = document.createElement('tr');
+        if (newIds.includes(appt.id)) {
+          row.classList.add('new-row-flash');
+        }
 
-        // Formatted Date
-        const dateStr = appt.preferredDate ? new Date(appt.preferredDate).toLocaleDateString('en-IN', {
+        // Formatted Date (resilient)
+        const dateStr = safeFormatDate(appt.preferredDate, {
           day: '2-digit', month: 'short', year: 'numeric'
-        }) : 'Not set';
+        });
 
         // Clean WhatsApp Phone link
-        const cleanPhone = appt.phone.replace(/[^0-9]/g, '');
-        const waLink = `https://wa.me/${cleanPhone.startsWith('91') ? cleanPhone : '91' + cleanPhone}?text=Hi%20${encodeURIComponent(appt.firstName)},%20this%20is%20DC%20Detailing%20Ahmedabad.%20Regarding%20your%20booking%20request...`;
+        const cleanPhone = (appt.phone || '').replace(/[^0-9]/g, '');
+        const waLink = `https://wa.me/${cleanPhone.startsWith('91') ? cleanPhone : '91' + cleanPhone}?text=Hi%20${encodeURIComponent(appt.firstName || '')},%20this%20is%20DC%20 Ahmedebad. Regarding your booking request...`;
 
         row.innerHTML = `
           <td>
             <div class="cust-info">
-              <span class="cust-name">${appt.firstName} ${appt.lastName}</span>
+              <span class="cust-name">${appt.firstName || ''} ${appt.lastName || ''}</span>
               <span class="cust-contact">
-                ${appt.phone}
+                ${appt.phone || ''}
                 <a href="${waLink}" target="_blank" class="btn-whatsapp">WhatsApp</a>
               </span>
             </div>
           </td>
           <td><strong>${dateStr}</strong></td>
-          <td><span class="vehicle-tag">${appt.vehicleType}</span></td>
-          <td><span class="service-tag">${appt.service}</span></td>
-          <td><span style="display:inline-block; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${appt.address}">${appt.address}</span></td>
+          <td><span class="vehicle-tag">${appt.vehicleType || ''}</span></td>
+          <td><span class="service-tag">${appt.service || ''}</span></td>
+          <td><span style="display:inline-block; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${appt.address || ''}">${appt.address || ''}</span></td>
           <td>
-            <span class="status-badge ${appt.status.toLowerCase()}">${appt.status}</span>
+            <span class="status-badge ${(appt.status || 'pending').toLowerCase()}">${appt.status || 'Pending'}</span>
           </td>
           <td>
             <div style="display:flex; align-items:center; gap:8px;">
@@ -973,15 +1168,23 @@
       const appt = appointmentsList.find(a => a.id === id);
       if (!appt) return;
 
-      document.getElementById('modalName').textContent = `${appt.firstName} ${appt.lastName}`;
-      document.getElementById('modalContact').textContent = `Phone: ${appt.phone} | Email: ${appt.email || 'None'}`;
-      document.getElementById('modalService').textContent = `${appt.vehicleType} — ${appt.service}`;
-      document.getElementById('modalDate').textContent = appt.preferredDate ? new Date(appt.preferredDate).toLocaleDateString('en-IN', {
+      document.getElementById('modalName').textContent = `${appt.firstName || ''} ${appt.lastName || ''}`;
+      document.getElementById('modalContact').textContent = `Phone: ${appt.phone || ''} | Email: ${appt.email || 'None'}`;
+      document.getElementById('modalService').textContent = `${appt.vehicleType || ''} — ${appt.service || ''}`;
+      
+      document.getElementById('modalDate').textContent = safeFormatDate(appt.preferredDate, {
         weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
-      }) : 'Not set';
-      document.getElementById('modalAddress').textContent = appt.address;
+      });
+      
+      document.getElementById('modalAddress').textContent = appt.address || '';
       document.getElementById('modalNotes').textContent = appt.notes || 'No extra notes provided.';
-      document.getElementById('modalCreated').textContent = new Date(appt.createdAt).toLocaleString('en-IN');
+      
+      let createdStr = 'Unknown';
+      if (appt.createdAt) {
+        const d = new Date(appt.createdAt);
+        createdStr = !isNaN(d.getTime()) ? d.toLocaleString('en-IN') : appt.createdAt;
+      }
+      document.getElementById('modalCreated').textContent = createdStr;
 
       document.getElementById('detailModal').style.display = 'flex';
     }
