@@ -933,7 +933,7 @@
       }, 4000);
     }
 
-    const binUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn/appointments';
+    const dbBaseUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn';
 
     // Check Session state
     window.onload = function() {
@@ -996,10 +996,20 @@
         }
       }
 
-      fetch(binUrl)
-        .then(res => res.json())
+      fetch(`${dbBaseUrl}/?prefix=appt_&values=true&format=json&reverse=true&_t=${Date.now()}`)
+        .then(res => {
+          if (!res.ok) throw new Error('Fetch failed');
+          return res.json();
+        })
         .then(data => {
-          const newList = data.appointments || [];
+          const newList = data.map(([key, val]) => {
+            try {
+              return typeof val === 'string' ? JSON.parse(val) : val;
+            } catch (e) {
+              console.error('Failed parsing booking value:', val);
+              return null;
+            }
+          }).filter(x => x !== null);
           
           // Cache in local storage
           localStorage.setItem('appointments', JSON.stringify(newList));
@@ -1172,27 +1182,26 @@
     }
 
     function changeStatus(id, newStatus) {
-      const updatedList = appointmentsList.map(appt => {
-        if (appt.id === id) {
-          return { ...appt, status: newStatus };
-        }
-        return appt;
-      });
+      const appt = appointmentsList.find(a => a.id === id);
+      if (!appt) return;
 
-      fetch(binUrl, {
+      const updatedAppt = { ...appt, status: newStatus };
+
+      fetch(`${dbBaseUrl}/appt_${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appointments: updatedList })
+        body: JSON.stringify(updatedAppt)
       })
-      .then(() => {
-        appointmentsList = updatedList;
-        localStorage.setItem('appointments', JSON.stringify(updatedList));
+      .then(res => {
+        if (!res.ok) throw new Error('Write failed');
+        appointmentsList = appointmentsList.map(a => a.id === id ? updatedAppt : a);
+        localStorage.setItem('appointments', JSON.stringify(appointmentsList));
         updateDashboard();
       })
       .catch(err => {
         console.error('Error writing status to cloud:', err);
-        appointmentsList = updatedList;
-        localStorage.setItem('appointments', JSON.stringify(updatedList));
+        appointmentsList = appointmentsList.map(a => a.id === id ? updatedAppt : a);
+        localStorage.setItem('appointments', JSON.stringify(appointmentsList));
         updateDashboard();
       });
     }
@@ -1201,12 +1210,11 @@
       if (confirm('Are you sure you want to delete this detailing request?')) {
         const updatedList = appointmentsList.filter(appt => appt.id !== id);
         
-        fetch(binUrl, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ appointments: updatedList })
+        fetch(`${dbBaseUrl}/appt_${id}`, {
+          method: 'DELETE'
         })
-        .then(() => {
+        .then(res => {
+          if (!res.ok) throw new Error('Delete failed');
           appointmentsList = updatedList;
           localStorage.setItem('appointments', JSON.stringify(updatedList));
           updateDashboard();
@@ -1301,24 +1309,24 @@
         }
       ];
 
-      const updatedList = [...mockList, ...appointmentsList];
-      
-      fetch(binUrl, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appointments: updatedList })
-      })
-      .then(() => {
-        appointmentsList = updatedList;
-        localStorage.setItem('appointments', JSON.stringify(updatedList));
-        updateDashboard();
-      })
-      .catch(err => {
-        console.error('Error loading mock data to cloud:', err);
-        appointmentsList = updatedList;
-        localStorage.setItem('appointments', JSON.stringify(updatedList));
-        updateDashboard();
+      const promises = mockList.map(mockAppt => {
+        return fetch(`${dbBaseUrl}/appt_${mockAppt.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(mockAppt)
+        });
       });
+      
+      Promise.all(promises)
+        .then(() => {
+          loadAppointments();
+        })
+        .catch(err => {
+          console.error('Error loading mock data to cloud:', err);
+          appointmentsList = [...mockList, ...appointmentsList];
+          localStorage.setItem('appointments', JSON.stringify(appointmentsList));
+          updateDashboard();
+        });
     }
   </script>
 </body>

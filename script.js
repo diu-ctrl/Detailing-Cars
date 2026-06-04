@@ -201,22 +201,16 @@ function handleBooking(e) {
   btn.style.opacity = '0.7';
 
   // Sync to Cloud and LocalStorage
-  const binUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn/appointments';
+  const dbBaseUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn';
+  const writeUrl = `${dbBaseUrl}/appt_${newAppt.id}`;
   
-  fetch(binUrl)
-    .then(res => res.json())
-    .then(data => {
-      const appointments = data.appointments || [];
-      appointments.unshift(newAppt);
-      
-      // Update cloud bin
-      return fetch(binUrl, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appointments })
-      });
-    })
-    .then(() => {
+  fetch(writeUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newAppt)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Write failed');
       // Also update local storage cache
       const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
       appts.unshift(newAppt);
