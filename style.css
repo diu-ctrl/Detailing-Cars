@@ -534,34 +534,35 @@ input, select, textarea { font-family: var(--font); }
   border-color: rgba(245, 240, 232, 0.4);
 }
 /* ===================================
-   TRUST BAR
+   HERO TRUST STRIP
    =================================== */
-.trust-bar {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-}
-.trust-bar-container {
+.hero-trust-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem var(--margin);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(245, 240, 232, 0.06);
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 1rem;
 }
-.trust-bar-stars {
+
+.hero-trust-strip .stars {
   color: var(--accent);
-  letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
 }
-.trust-bar-text {
-  font-size: 0.85rem;
+
+.hero-trust-strip .text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--text-secondary);
 }
 
 .hero-scroll-indicator {

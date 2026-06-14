@@ -105,7 +105,7 @@ const revealSelectors = [
   '.booking-container',
   '.booking-form-wrap',
   '.comparison-container',
-  '.trust-bar',
+  '.hero-trust-strip',
   '.step-item',
   '.addon-item'
 ];
