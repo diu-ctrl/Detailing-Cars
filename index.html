@@ -10,7 +10,7 @@
   <meta property="og:description" content="Ahmedabad's most trusted car detailing. Ceramic coating, paint correction, interior detailing. Book online today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=29">
   <link rel="preload" as="image" href="assets/hero_dc.png?v=3">
   <link rel="icon" type="image/png" href="assets/logo.png?v=2">
@@ -84,22 +84,26 @@
   <!-- ══════════ HERO ══════════ -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
-    <div class="hero-overlay-top"></div>
-    <div class="hero-overlay-bottom"></div>
     <div class="container hero-container">
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-stars">★★★★★</span>
-          <span class="badge-text">Trusted by 1,000+ customers</span>
+        <span class="hero-eyebrow">PREMIUM MOBILE DETAILING</span>
+        <h1 class="hero-title">The studio comes to you</h1>
+        <p class="hero-sub">Ceramic coating, paint correction, and interior detailing — done at your doorstep across Ahmedabad.</p>
+        <div class="hero-cta-group">
+          <a href="#book" class="btn-primary" id="hero-book-btn">Get Free Quote →</a>
+          <a href="#services" class="btn-secondary">View Services</a>
         </div>
-        <h1 class="hero-title">#1 Car Detailing Service of Ahmedabad</h1>
-      </div>
-      <div class="hero-cta-group">
-        <a href="#book" class="btn-primary" id="hero-book-btn">Get Free Quote →</a>
-        <a href="#services" class="btn-secondary">Learn More</a>
       </div>
     </div>
   </section>
+
+  <!-- ══════════ TRUST BAR ══════════ -->
+  <div class="trust-bar">
+    <div class="container trust-bar-container">
+      <span class="trust-bar-stars">★★★★★</span>
+      <span class="trust-bar-text">Trusted by 1,000+ happy customers in Ahmedabad</span>
+    </div>
+  </div>
 
   <!-- ══════════ SERVICES ══════════ -->
   <section class="services-section" id="services">
@@ -108,66 +112,56 @@
       <h2 class="section-title">Transform Your Vehicle</h2>
       <p class="section-sub">Professional auto detailing services delivered to your doorstep across Ahmedabad. No need to leave home or office!</p>
       <div class="services-grid">
-        <div class="service-card" data-aos="fade-up">
-          <div class="service-card-img">
+        <a href="#packages" class="service-card exterior-card" data-aos="fade-up">
+          <div class="service-img-wrap">
             <img src="assets/service_exterior.png?v=2" alt="Exterior Wash & Wax" />
-            <div class="service-img-gradient"></div>
-            <div class="service-number">01</div>
+            <div class="service-overlay"></div>
           </div>
-          <div class="service-card-body">
+          <div class="service-info">
+            <span class="service-num">01</span>
             <h3>Exterior Wash & Wax</h3>
-            <p>Full exterior hand wash, clay bar treatment, carnauba wax for brilliant shine and paint protection.</p>
-            <div class="service-tags">
-              <span>Hand Wash</span><span>Clay Bar</span><span>Wax Coat</span>
-            </div>
-            <a href="#packages" class="service-link">View Packages <span>→</span></a>
           </div>
-        </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-card-img">
+        </a>
+        <a href="#packages" class="service-card interior-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-img-wrap">
             <img src="assets/interior_detail.png?v=2" alt="Interior Detailing" />
-            <div class="service-img-gradient"></div>
-            <div class="service-number">02</div>
+            <div class="service-overlay"></div>
           </div>
-          <div class="service-card-body">
+          <div class="service-info">
+            <span class="service-num">02</span>
             <h3>Interior Detailing</h3>
-            <p>Deep vacuum, steam cleaning, leather conditioning, and odour elimination for a showroom-fresh cabin.</p>
-            <div class="service-tags">
-              <span>Deep Vacuum</span><span>Steam Clean</span><span>Leather Care</span>
-            </div>
-            <a href="#packages" class="service-link">View Packages <span>→</span></a>
           </div>
-        </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-card-img">
-            <img src="assets/paint_correction.png?v=2" alt="Paint Correction on Jaguar Sedan" />
-            <div class="service-img-gradient"></div>
-            <div class="service-number">03</div>
+        </a>
+        <a href="#packages" class="service-card correction-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-img-wrap">
+            <img src="assets/paint_correction.png?v=2" alt="Paint Correction" />
+            <div class="service-overlay"></div>
           </div>
-          <div class="service-card-body">
+          <div class="service-info">
+            <span class="service-num">03</span>
             <h3>Paint Correction</h3>
-            <p>Multi-stage machine polishing to remove swirl marks, scratches, and oxidation for a flawless finish.</p>
-            <div class="service-tags">
-              <span>Swirl Removal</span><span>Scratch Repair</span><span>Mirror Finish</span>
-            </div>
-            <a href="#packages" class="service-link">View Packages <span>→</span></a>
           </div>
-        </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-card-img">
-            <img src="assets/ceramic_coating.png?v=2" alt="Premium Ceramic Coating on BMW Sedan" />
-            <div class="service-img-gradient"></div>
-            <div class="service-number">04</div>
+        </a>
+        <a href="#packages" class="service-card ceramic-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-img-wrap">
+            <img src="assets/ceramic_coating.png?v=2" alt="Ceramic Coating" />
+            <div class="service-overlay"></div>
           </div>
-          <div class="service-card-body">
+          <div class="service-info">
+            <span class="service-num">04</span>
             <h3>Ceramic Coating</h3>
-            <p>Professional nano ceramic coating for ultimate paint protection, hydrophobic properties, and lasting gloss.</p>
-            <div class="service-tags">
-              <span>5yr Protection</span><span>Hydrophobic</span><span>UV Shield</span>
-            </div>
-            <a href="#packages" class="service-link">View Packages <span>→</span></a>
           </div>
-        </div>
+        </a>
+        <a href="#packages" class="service-card engine-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1000" alt="Engine Bay Detailing" />
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <span class="service-num">05</span>
+            <h3>Engine Bay Detailing</h3>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -178,19 +172,13 @@
       <div class="section-eyebrow">DETAIL PACKAGES</div>
       <h2 class="section-title">Choose Your Detail Package</h2>
       <p class="section-sub">Tailored packages for every vehicle and every budget. All services at your location across Ahmedabad.</p>
-      <div class="package-tabs">
-        <button class="tab-btn active" data-tab="hatch">Hatch / Sedan</button>
-        <button class="tab-btn" data-tab="suv">SUV / MUV</button>
-        <button class="tab-btn" data-tab="luxury">Luxury / Exotic</button>
-      </div>
       <div class="packages-grid">
         <!-- Essential -->
         <div class="package-card">
           <div class="package-tier-label">Starter</div>
           <h3 class="package-name">Essential Clean</h3>
           <div class="package-price-wrap">
-            <span class="price-from">from</span>
-            <span class="price-amount" data-hatch="₹999" data-suv="₹1,299" data-luxury="₹1,599">₹999</span>
+            <span class="price-amount">From ₹999</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Exterior Hand Wash</li>
@@ -206,12 +194,10 @@
         </div>
         <!-- Premium (Featured) -->
         <div class="package-card package-card-featured">
-          <div class="package-popular-badge">Most Popular</div>
           <div class="package-tier-label">Best Value</div>
           <h3 class="package-name">Premium Detail</h3>
           <div class="package-price-wrap">
-            <span class="price-from">from</span>
-            <span class="price-amount" data-hatch="₹2,499" data-suv="₹3,199" data-luxury="₹3,999">₹2,499</span>
+            <span class="price-amount">From ₹2,499</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Essential</li>
@@ -230,8 +216,7 @@
           <div class="package-tier-label">Full Service</div>
           <h3 class="package-name">Elite Detail</h3>
           <div class="package-price-wrap">
-            <span class="price-from">from</span>
-            <span class="price-amount" data-hatch="₹4,499" data-suv="₹5,499" data-luxury="₹6,499">₹4,499</span>
+            <span class="price-amount">From ₹4,499</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Premium</li>
@@ -250,8 +235,7 @@
           <div class="package-tier-label">Ultimate</div>
           <h3 class="package-name">Ceramic Pro</h3>
           <div class="package-price-wrap">
-            <span class="price-from">from</span>
-            <span class="price-amount" data-hatch="₹12,999" data-suv="₹15,999" data-luxury="₹19,999">₹12,999</span>
+            <span class="price-amount">From ₹12,999</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Elite</li>
@@ -266,6 +250,7 @@
           <a href="#book" class="package-btn package-btn-outline">Book Ceramic</a>
         </div>
       </div>
+      <p class="package-note">*Final price depends on vehicle size and condition.</p>
       <!-- Add-ons -->
       <div class="addons-section">
         <div class="addons-label">POPULAR ADD-ONS</div>
@@ -433,7 +418,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"DC is absolutely incredible. They came to my home in Prahlad Nagar and my Fortuner looked better than showroom condition. Won't use anyone else!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #fcdf00, #ff9800);">RP</div>
+            <div class="review-avatar">RP</div>
             <div><div class="review-name">Rajesh Patel</div><div class="review-location">Prahlad Nagar, Ahmedabad</div></div>
           </div>
         </div>
@@ -441,7 +426,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"The ceramic coating package is worth every rupee. My BMW X5 repels water like magic even 8 months later. These guys are true professionals!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #548dff, #1d6de5);">KS</div>
+            <div class="review-avatar">KS</div>
             <div><div class="review-name">Kavya Shah</div><div class="review-location">Satellite, Ahmedabad</div></div>
           </div>
         </div>
@@ -449,7 +434,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"Had a bad pet hair problem in my Innova Crysta. DC removed every trace — the interior smells and looks like brand new. Miraculous work!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #19f6ff, #548dff);">AM</div>
+            <div class="review-avatar">AM</div>
             <div><div class="review-name">Arjun Mehta</div><div class="review-location">Bopal, Ahmedabad</div></div>
           </div>
         </div>
@@ -457,7 +442,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"Best investment for my Thar. The paint correction removed 4 years of swirl marks. Highly recommend the Elite package to every car enthusiast!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #fcdf00, #ff6b35);">DV</div>
+            <div class="review-avatar">DV</div>
             <div><div class="review-name">Dhruv Vaghela</div><div class="review-location">Thaltej, Ahmedabad</div></div>
           </div>
         </div>
@@ -465,7 +450,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"Super easy to book, they showed up on time, and my white Creta had never looked this clean in 3 years. Absolutely stunned by the results!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #fcdf00, #19f6ff);">PM</div>
+            <div class="review-avatar">PM</div>
             <div><div class="review-name">Priya Modi</div><div class="review-location">Science City, Ahmedabad</div></div>
           </div>
         </div>
@@ -473,7 +458,7 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"My Verna needed urgent interior cleaning before a big family trip. DC came same day and delivered beyond expectations. Book them now!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #548dff, #19f6ff);">NJ</div>
+            <div class="review-avatar">NJ</div>
             <div><div class="review-name">Nisha Joshi</div><div class="review-location">Gota, Ahmedabad</div></div>
           </div>
         </div>

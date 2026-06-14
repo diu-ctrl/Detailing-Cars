@@ -74,32 +74,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ─── Package Tabs / Price Switcher ───────────────────────────────────────────
-const tabBtns = document.querySelectorAll('.tab-btn');
-const priceAmounts = document.querySelectorAll('.price-amount');
-
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const tab = btn.dataset.tab;
-    priceAmounts.forEach(el => {
-      const oldPrice = el.textContent;
-      const newPrice = el.dataset[tab] || el.textContent;
-
-      // Animate price change
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(-10px)';
-      setTimeout(() => {
-        el.textContent = newPrice;
-        el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 200);
-    });
-  });
-});
 
 // ─── FAQ Accordion ───────────────────────────────────────────────────────────
 document.querySelectorAll('.faq-question').forEach(btn => {
@@ -243,7 +217,7 @@ function handleBooking(e) {
 
 // ─── Simple Confetti Effect ───────────────────────────────────────────────────
 function spawnConfetti() {
-  const colors = ['#f5a800', '#ff9800', '#ffffff', '#0276d2'];
+  const colors = ['#c5a059', '#d4af37', '#f5f0e8', '#8a8580'];
   for (let i = 0; i < 30; i++) {
     const dot = document.createElement('div');
     dot.style.cssText = `
@@ -330,12 +304,11 @@ function createLightbox() {
 
 const lightbox = createLightbox();
 
-document.querySelectorAll('.gallery-item').forEach(item => {
+document.querySelectorAll('.scroller-item').forEach(item => {
   item.addEventListener('click', () => {
     const img = item.querySelector('img');
-    const caption = item.querySelector('.gallery-hover span');
     document.getElementById('lightboxImg').src = img.src;
-    document.getElementById('lightboxCaption').textContent = caption ? caption.textContent : '';
+    document.getElementById('lightboxCaption').textContent = img.alt || '';
     lightbox.style.display = 'flex';
   });
   item.style.cursor = 'zoom-in';
@@ -459,7 +432,7 @@ if (copyrightYearEl) {
 // ─── Hero Background Image Loader ───────────────────────────────────────────
 const heroSectionEl = document.querySelector('.hero');
 if (heroSectionEl) {
-  const imgUrl = 'assets/hero_dc.png?v=3';
+  const imgUrl = 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=1920';
   const tempImg = new Image();
   const imgTimeout = setTimeout(() => {
     heroSectionEl.classList.add('hero-loaded');
