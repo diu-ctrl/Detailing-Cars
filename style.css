@@ -449,30 +449,33 @@ input, select, textarea { font-family: var(--font); }
   z-index: 2;
 }
 .hero-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
+  letter-spacing: 0.2em; /* wider than current */
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+  color: var(--accent); /* muted gold, not white */
+  margin-bottom: 1.5rem;
+  display: block;
 }
 .hero-sub {
-  font-size: 1.125rem;
-  color: var(--text-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 400;
   line-height: 1.6;
-  margin-top: 16px;
-  margin-bottom: 32px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 2rem;
 }
 .hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
   font-weight: 700;
-  color: #ffffff;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 0;
-  text-transform: none;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.03em; /* tighter for impact */
+  line-height: 0.95; /* tight, editorial */
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  max-width: 600px;
 }
 
 .hero-cta-group {
@@ -484,47 +487,6 @@ input, select, textarea { font-family: var(--font); }
   width: 100%;
   margin-top: 0;
 }
-.hero-cta-group .btn-primary {
-  background: var(--accent);
-  color: var(--bg-primary);
-  font-weight: 700;
-  font-size: 15px;
-  padding: 14px 30px;
-  border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.hero-cta-group .btn-primary:hover {
-  transform: translateY(-2px);
-  background: var(--accent-hover);
-  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
-  color: var(--bg-primary);
-}
-.hero-cta-group .btn-secondary {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  font-weight: 700;
-  font-size: 15px;
-  padding: 14px 30px;
-  border-radius: 50px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  transition: transform 0.2s, background 0.2s, border-color 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.hero-cta-group .btn-secondary:hover {
-  transform: translateY(-2px);
-  background: var(--bg-elevated);
-  border-color: var(--accent);
-}
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-  color: #ffffff;
-}
 
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(30px); }
@@ -533,42 +495,43 @@ input, select, textarea { font-family: var(--font); }
 
 /* Base button styles */
 .btn-primary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
   background: var(--accent);
   color: var(--bg-primary);
-  font-weight: 800;
-  font-size: 16px;
-  padding: 16px 36px;
-  border-radius: 50px;
-  transition: var(--transition);
+  border: none;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
+  border-radius: 0;
 }
 .btn-primary:hover {
-  transform: translateY(-3px);
-  background: var(--accent-hover);
-  box-shadow: 0 10px 40px rgba(197, 160, 89, 0.35);
-  color: var(--bg-primary);
+  transform: translateY(-2px);
 }
 .btn-secondary {
-  background: rgba(255,255,255,0.1);
-  color: var(--white);
-  font-weight: 700;
-  font-size: 16px;
-  padding: 16px 36px;
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
-  transition: var(--transition);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  border-radius: 0;
 }
 .btn-secondary:hover {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.4);
   transform: translateY(-2px);
+  border-color: rgba(245, 240, 232, 0.4);
 }
 /* ===================================
    TRUST BAR
