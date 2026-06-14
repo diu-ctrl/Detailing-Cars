@@ -76,19 +76,25 @@ input, select, textarea { font-family: var(--font); }
    OFFER ANNOUNCEMENT BAR (Blue, Closeable)
    =================================== */
 .offer-bar {
-  background: #1d6de5;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
   height: auto;
   min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 48px 7px 16px;
+  padding: 7px 16px;
   position: relative;
   z-index: 1001;
   transition: height 0.3s ease, opacity 0.3s ease;
 }
 .offer-bar.hidden {
   display: none;
+}
+.offer-bar strong {
+  color: var(--accent);
+  font-weight: 600;
 }
 .offer-bar-inner {
   display: flex;
@@ -98,41 +104,15 @@ input, select, textarea { font-family: var(--font); }
   flex: 1;
 }
 .offer-tag-icon {
-  color: rgba(255,255,255,0.85);
+  color: var(--accent);
   flex-shrink: 0;
 }
 .offer-bar-text {
   font-size: 13px;
   font-weight: 400;
-  color: rgba(255,255,255,0.95);
+  color: inherit;
   text-align: center;
   line-height: 1.4;
-}
-.offer-bar-text strong {
-  font-weight: 700;
-  color: #fff;
-}
-.offer-bar-close {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.8);
-  font-size: 15px;
-  cursor: pointer;
-  padding: 4px 6px;
-  line-height: 1;
-  border-radius: 4px;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.offer-bar-close:hover {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
 }
 
 /* ===================================
