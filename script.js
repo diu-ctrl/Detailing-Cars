@@ -143,12 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.navbar .nav-logo',
     '.navbar .nav-links a',
     '.navbar .mobile-book-btn',
-    '.navbar .hamburger',
-    '.hero-eyebrow',
-    '.hero-title',
-    '.hero-sub',
-    '.hero-cta-group .btn-primary',
-    '.hero-cta-group .btn-secondary'
+    '.navbar .hamburger'
   ];
   const elements = [];
   loadSelectors.forEach(sel => {
