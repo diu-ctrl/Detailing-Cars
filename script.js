@@ -136,35 +136,111 @@ revealElements.forEach(el => {
   }
 });
 
+// ─── Multi-Step Form Navigation & Price Estimation ───────────────────────────
+const pricingData = {
+  'Essential Clean': { 'Hatchback': 999, 'Sedan': 1199, 'SUV / MUV': 1299, 'Luxury / Exotic': 1599 },
+  'Premium Detail': { 'Hatchback': 2499, 'Sedan': 2799, 'SUV / MUV': 3199, 'Luxury / Exotic': 3999 },
+  'Elite Detail': { 'Hatchback': 4499, 'Sedan': 4999, 'SUV / MUV': 5499, 'Luxury / Exotic': 6499 },
+  'Ceramic Pro': { 'Hatchback': 12999, 'Sedan': 13999, 'SUV / MUV': 15999, 'Luxury / Exotic': 19999 }
+};
+
+function updateEstimates() {
+  const vehicleType = document.getElementById('vehicleType').value;
+  const service = document.getElementById('service').value;
+  const priceEstimateEl = document.getElementById('priceEstimate');
+
+  if (!priceEstimateEl) return;
+
+  if (service && vehicleType) {
+    const price = pricingData[service]?.[vehicleType];
+    priceEstimateEl.textContent = price ? `₹${price.toLocaleString('en-IN')}` : '₹999 – ₹19,999';
+  } else if (service) {
+    const prices = Object.values(pricingData[service]);
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+    priceEstimateEl.textContent = `₹${min.toLocaleString('en-IN')} – ₹${max.toLocaleString('en-IN')}`;
+  } else if (vehicleType) {
+    const prices = Object.keys(pricingData).map(srv => pricingData[srv][vehicleType]).filter(Boolean);
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+    priceEstimateEl.textContent = `₹${min.toLocaleString('en-IN')} – ₹${max.toLocaleString('en-IN')}+`;
+  } else {
+    priceEstimateEl.textContent = '₹999 – ₹19,999+';
+  }
+}
+
+function nextStep(currentStep) {
+  const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+  if (!currentStepEl) return;
+
+  const inputs = currentStepEl.querySelectorAll('input[required], select[required]');
+  let isValid = true;
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      input.reportValidity();
+      isValid = false;
+    }
+  });
+
+  if (!isValid) return;
+
+  const nextStepNum = currentStep + 1;
+  const nextStepEl = document.querySelector(`.form-step[data-step="${nextStepNum}"]`);
+
+  if (nextStepEl) {
+    currentStepEl.classList.remove('active');
+    nextStepEl.classList.add('active');
+
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+      progressFill.style.width = `${(nextStepNum / 3) * 100}%`;
+    }
+  }
+}
+
+function prevStep(currentStep) {
+  const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+  const prevStepNum = currentStep - 1;
+  const prevStepEl = document.querySelector(`.form-step[data-step="${prevStepNum}"]`);
+
+  if (prevStepEl) {
+    currentStepEl.classList.remove('active');
+    prevStepEl.classList.add('active');
+
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+      progressFill.style.width = `${(prevStepNum / 3) * 100}%`;
+    }
+  }
+}
+
 // ─── Booking Form Handler ─────────────────────────────────────────────────────
 function handleBooking(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   const form = document.getElementById('bookingForm');
   const success = document.getElementById('formSuccess');
+  const progressFill = document.getElementById('progressFill');
 
   // Parse values
   const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
   const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
   const vehicleType = document.getElementById('vehicleType').value;
   const service = document.getElementById('service').value;
   const address = document.getElementById('address').value;
   const preferredDate = document.getElementById('preferredDate').value;
-  const notes = document.getElementById('notes').value;
 
   const newAppt = {
     id: 'APT-' + Date.now(),
     firstName,
-    lastName,
+    lastName: '',
     phone,
-    email,
+    email: '',
     vehicleType,
     service,
     address,
     preferredDate,
-    notes,
+    notes: '',
     status: 'Pending',
     createdAt: new Date().toISOString()
   };
@@ -193,7 +269,6 @@ function handleBooking(e) {
     })
     .catch(err => {
       console.error('Cloud sync error, falling back to LocalStorage:', err);
-      // Fallback: save to localStorage only
       const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
       appts.unshift(newAppt);
       localStorage.setItem('appointments', JSON.stringify(appts));
@@ -203,13 +278,14 @@ function handleBooking(e) {
   function showSuccessState() {
     setTimeout(() => {
       form.style.display = 'none';
+      if (progressFill) progressFill.parentElement.style.display = 'none';
       success.style.display = 'block';
       success.style.animation = 'heroIn 0.5s ease forwards';
 
       // Scroll to success
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      // Confetti-style celebration (CSS only)
+      // Confetti-style celebration
       spawnConfetti();
     }, 800);
   }

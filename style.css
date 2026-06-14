@@ -1499,32 +1499,27 @@ input, select, textarea { font-family: var(--font); }
 }
 .booking-left { padding-top: 20px; }
 .booking-title {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 700;
+  font-weight: 500;
   text-transform: none;
   letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 20px;
-  color: var(--white);
-}
-.booking-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.1;
   margin-bottom: 36px;
+  color: var(--white);
 }
 .booking-trust-badges {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 .trust-badge {
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
 }
 .trust-badge span { font-size: 20px; }
@@ -1534,22 +1529,60 @@ input, select, textarea { font-family: var(--font); }
   border-radius: var(--radius-lg);
   padding: 36px;
 }
-.form-title {
-  font-size: 22px;
-  font-weight: 800;
+.form-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
   margin-bottom: 28px;
-  color: var(--white);
 }
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+.form-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 33.3%;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.price-estimate-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(197, 160, 89, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 28px;
+}
+.estimate-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+.estimate-value {
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+}
+.form-step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--white);
 }
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .form-group label {
   font-size: 0.65rem;
@@ -1559,13 +1592,12 @@ input, select, textarea { font-family: var(--font); }
   color: var(--text-secondary);
 }
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
   background: var(--dark-3);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--white);
-  padding: 12px 16px;
+  padding: 14px 16px;
   font-size: 14px;
   transition: var(--transition);
   outline: none;
@@ -1573,36 +1605,68 @@ input, select, textarea { font-family: var(--font); }
   -webkit-appearance: none;
   appearance: none;
 }
-.form-group input::placeholder,
-.form-group textarea::placeholder { color: var(--text-muted); }
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8580' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+.form-group input::placeholder { color: var(--text-muted); }
 .form-group select option { background: var(--dark-3); color: var(--white); }
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-group select:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
 }
-.form-submit-btn {
+.form-btn-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+.form-btn-group button {
+  flex: 1;
+}
+.booking-form-wrap .btn-primary,
+.booking-form-wrap .form-submit-btn {
   width: 100%;
   background: var(--accent);
   color: var(--bg-primary);
-  font-size: 16px;
-  font-weight: 800;
-  padding: 16px;
-  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   transition: var(--transition);
-  margin-top: 4px;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
 }
-.form-submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.4);
+.booking-form-wrap .btn-primary:hover,
+.booking-form-wrap .form-submit-btn:hover {
+  background: var(--accent-hover);
 }
-.form-note {
-  margin-top: 12px;
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
+.booking-form-wrap .btn-secondary,
+.booking-form-wrap .form-btn-prev {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 20px;
+  border-radius: 0 !important;
+  transition: var(--transition);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.booking-form-wrap .btn-secondary:hover,
+.booking-form-wrap .form-btn-prev:hover {
+  background: var(--bg-elevated);
+  border-color: var(--text-secondary);
 }
 .form-success {
   text-align: center;
@@ -1611,6 +1675,26 @@ input, select, textarea { font-family: var(--font); }
 .success-icon { font-size: 60px; margin-bottom: 20px; }
 .form-success h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
 .form-success p { color: var(--text-muted); margin-bottom: 24px; font-size: 15px; }
+.whatsapp-quick-book {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.whatsapp-quick-book a {
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition);
+}
+.whatsapp-quick-book a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
 
 /* ===================================
    HOW IT WORKS SECTION

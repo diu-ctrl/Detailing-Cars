@@ -490,10 +490,9 @@
   <section class="booking-section" id="book">
     <div class="container">
       <div class="booking-inner">
+        <!-- Left Side: Headline and Trust Badges -->
         <div class="booking-left">
-          <div class="section-eyebrow light">BOOK NOW</div>
-          <h2 class="booking-title">Shine Now,<br><span class="gradient-text">Pay Later</span></h2>
-          <p class="booking-desc">Book your detail today with zero stress. We offer flexible payment via UPI, card, or cash so your car can look its best.</p>
+          <h2 class="booking-title">Shine Now,<br>Pay Later</h2>
           <div class="booking-trust-badges">
             <div class="trust-badge">
               <span class="badge-icon-svg">
@@ -509,7 +508,7 @@
             </div>
             <div class="trust-badge">
               <span class="badge-icon-svg">
-                <svg viewBox="0 0 24 24" fill="currentColor" style="color: var(--primary);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </span>
               500+ 5-Star Reviews
             </div>
@@ -521,75 +520,101 @@
             </div>
           </div>
         </div>
+
+        <!-- Right Side: Multi-Step Form -->
         <div class="booking-form-wrap">
+          <!-- Progress Bar Indicator -->
+          <div class="form-progress-bar">
+            <div class="form-progress-fill" id="progressFill" style="width: 33.3%;"></div>
+          </div>
+
           <form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)">
-            <h3 class="form-title">Get Your Free Quote</h3>
-            <div class="form-row">
+            <!-- Price Estimate Indicator -->
+            <div class="price-estimate-indicator">
+              <span class="estimate-label">Estimated Price Range:</span>
+              <span class="estimate-value" id="priceEstimate">₹999 – ₹19,999+</span>
+            </div>
+
+            <!-- Step 1: Contact Info -->
+            <div class="form-step active" data-step="1">
+              <h3 class="form-step-title">Step 1: Contact Info</h3>
               <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="Raj" required>
+                <input type="text" id="firstName" placeholder="e.g. Rajesh" required>
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" placeholder="Patel" required>
+                <label for="phone">WhatsApp Number</label>
+                <input type="tel" id="phone" placeholder="e.g. 99797 87087" required>
               </div>
+              <button type="button" class="form-btn-next btn-primary" onclick="nextStep(1)">
+                <span>Next Step →</span>
+              </button>
             </div>
-            <div class="form-group">
-              <label for="phone">WhatsApp / Phone Number</label>
-              <input type="tel" id="phone" placeholder="+91 99797 87087" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="raj@example.com">
-            </div>
-            <div class="form-row">
+
+            <!-- Step 2: Vehicle & Service -->
+            <div class="form-step" data-step="2">
+              <h3 class="form-step-title">Step 2: Vehicle & Service</h3>
               <div class="form-group">
                 <label for="vehicleType">Vehicle Type</label>
-                <select id="vehicleType" required>
+                <select id="vehicleType" onchange="updateEstimates()" required>
                   <option value="">Select Type</option>
-                  <option>Hatchback</option>
-                  <option>Sedan</option>
-                  <option>SUV / MUV</option>
-                  <option>Luxury / Exotic</option>
-                  <option>Truck / Commercial</option>
+                  <option value="Hatchback">Hatchback</option>
+                  <option value="Sedan">Sedan</option>
+                  <option value="SUV / MUV">SUV / MUV</option>
+                  <option value="Luxury / Exotic">Luxury / Exotic</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="service">Service Package</label>
-                <select id="service" required>
+                <select id="service" onchange="updateEstimates()" required>
                   <option value="">Select Package</option>
-                  <option>Essential Clean</option>
-                  <option>Premium Detail</option>
-                  <option>Elite Detail</option>
-                  <option>Ceramic Pro</option>
-                  <option>Not Sure — Get Quote</option>
+                  <option value="Essential Clean">Essential Clean</option>
+                  <option value="Premium Detail">Premium Detail</option>
+                  <option value="Elite Detail">Elite Detail</option>
+                  <option value="Ceramic Pro">Ceramic Pro</option>
                 </select>
               </div>
+              <div class="form-btn-group">
+                <button type="button" class="form-btn-prev btn-secondary" onclick="prevStep(2)">← Back</button>
+                <button type="button" class="form-btn-next btn-primary" onclick="nextStep(2)">Next Step →</button>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="address">Service Address (Ahmedabad)</label>
-              <input type="text" id="address" placeholder="Satellite, Prahlad Nagar, Bopal..." required>
+
+            <!-- Step 3: Address & Date -->
+            <div class="form-step" data-step="3">
+              <h3 class="form-step-title">Step 3: Address & Date</h3>
+              <div class="form-group">
+                <label for="address">Service Address (Ahmedabad)</label>
+                <input type="text" id="address" placeholder="e.g. Satellite, Prahlad Nagar" required>
+              </div>
+              <div class="form-group">
+                <label for="preferredDate">Preferred Date</label>
+                <input type="date" id="preferredDate" required>
+              </div>
+              <div class="form-btn-group">
+                <button type="button" class="form-btn-prev btn-secondary" onclick="prevStep(3)">← Back</button>
+                <button type="submit" class="form-submit-btn btn-primary" id="submitBtn">
+                  <span>Submit Booking →</span>
+                </button>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="preferredDate">Preferred Date</label>
-              <input type="date" id="preferredDate" required>
-            </div>
-            <div class="form-group">
-              <label for="notes">Additional Notes (optional)</label>
-              <textarea id="notes" rows="3" placeholder="Any special requests, heavy dust, pet hair..."></textarea>
-            </div>
-            <button type="submit" class="form-submit-btn" id="submitBtn">
-              <span>Get My Free Quote →</span>
-            </button>
-            <p class="form-note">We respond within 30 minutes via WhatsApp or call.</p>
           </form>
+
+          <!-- Success Screen -->
           <div class="form-success" id="formSuccess" style="display:none;">
             <div class="success-icon">
-              <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 20px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 20px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <h3>Request Received!</h3>
+            <h3>Booking Submitted!</h3>
             <p>We'll WhatsApp you within 30 minutes to confirm your appointment. Check your messages!</p>
-            <a href="tel:+919979787087" class="btn-primary">Or Call: +91 99797 87087</a>
+          </div>
+
+          <!-- WhatsApp Quick Book Option -->
+          <div class="whatsapp-quick-book">
+            <span>Rather chat?</span>
+            <a href="https://wa.me/919979787087?text=Hi%20DC,%20I'd%20like%20to%20book%20a%20detailing%20service%20for%20my%20car." target="_blank">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; position: relative; top: -1px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm5.835-3.266l.33.196c1.761 1.045 3.8 1.597 5.845 1.598 5.542 0 10.054-4.51 10.057-10.054.001-2.686-1.043-5.212-2.939-7.11C17.23 3.468 14.7 2.423 12.01 2.423c-5.546 0-10.06 4.512-10.063 10.058-.001 2.13.56 4.204 1.624 6.009l.214.364-1.07 3.906 4.026-1.056zM17.86 14.73c-.32-.16-1.89-.93-2.185-1.04-.294-.11-.51-.16-.723.16-.214.32-.83 1.04-1.016 1.25-.187.21-.373.24-.693.08-1.527-.765-2.658-1.332-3.712-3.138-.278-.477.278-.443.796-1.477.087-.174.043-.327-.022-.457-.065-.13-.51-1.226-.7-1.685-.185-.443-.372-.382-.51-.389-.13-.007-.279-.008-.428-.008-.15 0-.393.056-.6.28-.206.223-.788.77-.788 1.877 0 1.107.805 2.177.917 2.33 1.043 1.417 2.11 2.235 3.398 2.72.784.296 1.428.375 1.97.294.606-.09 1.89-.77 2.155-1.48.266-.707.266-1.312.187-1.44-.08-.127-.294-.207-.614-.367z"/></svg>Rather chat? Message us on WhatsApp
+            </a>
           </div>
         </div>
       </div>
