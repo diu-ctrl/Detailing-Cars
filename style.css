@@ -411,7 +411,7 @@ input, select, textarea { font-family: var(--font); }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to bottom, rgba(10,10,10,0.3), rgba(10,10,10,0.85)), url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=1920');
+  background-image: linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.2) 100%), url('https://images.unsplash.com/photo-1563294374-29787e91409d?auto=format&fit=crop&q=80&w=1920');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

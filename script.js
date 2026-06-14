@@ -508,7 +508,7 @@ if (copyrightYearEl) {
 // ─── Hero Background Image Loader ───────────────────────────────────────────
 const heroSectionEl = document.querySelector('.hero');
 if (heroSectionEl) {
-  const imgUrl = 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=1920';
+  const imgUrl = 'https://images.unsplash.com/photo-1563294374-29787e91409d?auto=format&fit=crop&q=80&w=1920';
   const tempImg = new Image();
   const imgTimeout = setTimeout(() => {
     heroSectionEl.classList.add('hero-loaded');
