@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=29">
   <link rel="preload" as="image" href="assets/hero_dc.png?v=3">
-  <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+  <link rel="icon" type="image/png" href="assets/logo_square.png?v=2">
 </head>
 <body>
 
@@ -23,6 +23,7 @@
       <svg class="offer-tag-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
       <span class="offer-bar-text">Summer Special — All full detail packages include <strong>Free 3-Month Ceramic Wax</strong> (Worth ₹1,500). Limited slots!</span>
     </div>
+    <button class="offer-close-btn" id="offerBarClose" aria-label="Close Announcement">&times;</button>
   </div>
 
   <!-- FLOATING CAPSULE NAVBAR -->
@@ -86,18 +87,13 @@
     <div class="container hero-container">
       <div class="hero-content">
         <span class="hero-eyebrow">PREMIUM MOBILE DETAILING</span>
-        <h1 class="hero-title">The studio comes to you</h1>
+        <h1 class="hero-title">The studio<br>comes to you</h1>
         <p class="hero-sub">Ceramic coating, paint correction, and interior detailing — done at your doorstep across Ahmedabad.</p>
         <div class="hero-cta-group">
           <a href="#book" class="btn-primary" id="hero-book-btn">Get Free Quote →</a>
           <a href="#services" class="btn-secondary">View Services</a>
         </div>
       </div>
-    </div>
-    <div class="hero-trust-strip">
-      <span class="stars">★★★★★</span>
-      <span class="text">Trusted by 1,000+ happy customers in Ahmedabad</span>
-    </div>
   </section>
 
   <!-- ══════════ SERVICES ══════════ -->
@@ -388,15 +384,51 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Comes to Your Location</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Paint-Safe Hand Wash</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Interior Deep Cleaning</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Scratch & Swirl Removal</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Ceramic Coating Available</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Odour Elimination</td><td class="no">✗ No</td><td class="yes dc-col">✓ Yes</td></tr>
-            <tr><td>Trained Professional Detailers</td><td class="partial">~ Sometimes</td><td class="yes dc-col">✓ Always</td></tr>
-            <tr><td>Satisfaction Guarantee</td><td class="no">✗ No</td><td class="yes dc-col">✓ 100%</td></tr>
-            <tr><td>Online Booking</td><td class="partial">~ Some</td><td class="yes dc-col">✓ Easy & Fast</td></tr>
+            <tr>
+              <td>Comes to Your Location</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Paint-Safe Hand Wash</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Interior Deep Cleaning</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Scratch & Swirl Removal</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Ceramic Coating Available</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Odour Elimination</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-yes dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Trained Professional Detailers</td>
+              <td class="symbol-partial">~</td>
+              <td class="symbol-premium dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Satisfaction Guarantee</td>
+              <td class="symbol-no">−</td>
+              <td class="symbol-premium dc-col">+</td>
+            </tr>
+            <tr>
+              <td>Online Booking</td>
+              <td class="symbol-partial">~</td>
+              <td class="symbol-premium dc-col">+</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -651,7 +683,7 @@
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
-    <div class="footer-logo-large">DC</div>
+    <div class="footer-logo-large"><img src="assets/logo.png?v=2" alt="DC Logo"></div>
     <div class="container">
       <div class="footer-grid">
         <!-- Services Column -->
@@ -707,10 +739,10 @@
         <div class="footer-bottom-inner">
           <p class="copyright-text">© <span id="copyright-year">2026</span> DC. All rights reserved. <span class="admin-demo-wrap">| <a href="admin.html" target="_blank" class="admin-demo-link">View Admin Demo</a> <span class="admin-demo-note">(Part of the full-stack demonstration)</span></span></p>
           <div class="footer-social-monochrome">
-            <a href="https://www.instagram.com/divyraj.33" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/divyaraj.creates" target="_blank" aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="https://www.instagram.com/divyraj.33" target="_blank" aria-label="Facebook">
+            <a href="https://www.instagram.com/divyaraj.creates" target="_blank" aria-label="Facebook">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
             <a href="https://wa.me/qr/KQJFSZ2WY5FSO1" target="_blank" aria-label="WhatsApp">
@@ -742,7 +774,7 @@
       <div class="modal-divider"></div>
       <h4 class="modal-subheading">Want a website like this?</h4>
       <div class="modal-actions">
-        <a href="https://www.instagram.com/divyraj.33" target="_blank" class="modal-btn-secondary">View Portfolio</a>
+        <a href="https://www.instagram.com/divyaraj.creates" target="_blank" class="modal-btn-secondary">View Portfolio</a>
         <a href="mailto:divyarajc2@gmail.com" class="modal-btn-primary">Get in Touch</a>
       </div>
     </div>

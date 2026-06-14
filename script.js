@@ -105,7 +105,6 @@ const revealSelectors = [
   '.booking-container',
   '.booking-form-wrap',
   '.comparison-container',
-  '.hero-trust-strip',
   '.step-item',
   '.addon-item'
 ];
@@ -503,7 +502,7 @@ if (copyrightYearEl) {
 // ─── Hero Background Image Loader ───────────────────────────────────────────
 const heroSectionEl = document.querySelector('.hero');
 if (heroSectionEl) {
-  const imgUrl = 'https://images.unsplash.com/photo-1563294374-29787e91409d?auto=format&fit=crop&q=80&w=1920';
+  const imgUrl = 'assets/hero_dc.png?v=3';
   const tempImg = new Image();
   const imgTimeout = setTimeout(() => {
     heroSectionEl.classList.add('hero-loaded');
