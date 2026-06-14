@@ -93,47 +93,77 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// ─── Scroll Animations (Intersection Observer) ───────────────────────────────
-const aosElements = document.querySelectorAll('[data-aos]');
+// ─── Unified Premium Scroll Animations (Intersection Observer) ───────────────
+const revealSelectors = [
+  '.section-eyebrow',
+  '.section-title',
+  '.section-sub',
+  '.service-card',
+  '.package-card',
+  '.review-card',
+  '.faq-item',
+  '.booking-container',
+  '.booking-form-wrap',
+  '.comparison-container',
+  '.trust-bar',
+  '.step-item',
+  '.addon-item'
+];
 
-const aosObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('aos-visible');
-      aosObserver.unobserve(entry.target);
+// Dynamically assign reveal class to target sections and cards
+document.querySelectorAll(revealSelectors.join(', ')).forEach(el => {
+  el.classList.add('reveal');
+});
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  let intersectCount = 0;
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+      intersectCount++;
+      const el = entry.target;
+      // Stagger animations when multiple elements intersect at once (e.g., grids)
+      setTimeout(() => {
+        el.classList.add('revealed');
+      }, intersectCount * 80);
+      scrollObserver.unobserve(el);
     }
   });
 }, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -40px 0px'
+  threshold: 0.05,
+  rootMargin: '0px 0px -20px 0px'
 });
 
-aosElements.forEach(el => aosObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => {
+  scrollObserver.observe(el);
+});
 
-// ─── General scroll-reveal for all major sections ────────────────────────────
-const revealElements = document.querySelectorAll(
-  '.service-card, .package-card, .vehicle-item, .review-card, .step-item, .addon-item'
-);
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }, i * 60);
-      revealObserver.unobserve(entry.target);
-    }
+// ─── Premium Page-Load Animation (Staggered) ─────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const loadSelectors = [
+    '.navbar .nav-logo',
+    '.navbar .nav-links a',
+    '.navbar .mobile-book-btn',
+    '.navbar .hamburger',
+    '.hero-eyebrow',
+    '.hero-title',
+    '.hero-sub',
+    '.hero-cta-group .btn-primary',
+    '.hero-cta-group .btn-secondary'
+  ];
+  const elements = [];
+  loadSelectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      elements.push(el);
+      el.classList.add('load-reveal');
+    });
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-revealElements.forEach(el => {
-  if (!el.hasAttribute('data-aos')) {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    revealObserver.observe(el);
-  }
+  // Stagger fade-in page-load elements by 0.1s
+  elements.forEach((el, idx) => {
+    setTimeout(() => {
+      el.classList.add('revealed');
+    }, idx * 100);
+  });
 });
 
 // ─── Multi-Step Form Navigation & Price Estimation ───────────────────────────
@@ -458,43 +488,8 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// ─── Letter-by-Letter Fade & Blur Effect for Hero Title ──────────────────────
-const titleEl = document.querySelector('.hero-title');
-if (titleEl) {
-  const text = titleEl.textContent.trim();
-  titleEl.innerHTML = '';
-  const words = text.split(' ');
-  let charIndex = 0;
-  
-  words.forEach((word, wordIdx) => {
-    const wordSpan = document.createElement('span');
-    wordSpan.style.display = 'inline-block';
-    wordSpan.style.whiteSpace = 'nowrap';
-    
-    [...word].forEach((char) => {
-      const charSpan = document.createElement('span');
-      charSpan.textContent = char;
-      charSpan.className = 'char-fade';
-      // stagger delay per character, starting slightly after entry
-      charSpan.style.animationDelay = `${0.2 + charIndex * 0.04}s`;
-      wordSpan.appendChild(charSpan);
-      charIndex++;
-    });
-    
-    titleEl.appendChild(wordSpan);
-    
-    // Add a space span between words
-    if (wordIdx < words.length - 1) {
-      const spaceSpan = document.createElement('span');
-      spaceSpan.textContent = ' ';
-      spaceSpan.style.whiteSpace = 'pre';
-      titleEl.appendChild(spaceSpan);
-    }
-  });
-  
-  // Add class to reveal title container
-  titleEl.classList.add('loaded');
-}
+// Hero Title is now animated via the unified load-reveal system
+
 
 // ─── Initialize ──────────────────────────────────────────────────────────────
 console.log('🚗 DC Website Loaded — Ahmedabad\'s #1 Mobile Auto Detailing');
@@ -532,7 +527,7 @@ function promptAdminLogin() {
 }
 
 // Trigger 1: Double click footer logo
-const footerLogoEl = document.querySelector('.footer-logo img');
+const footerLogoEl = document.querySelector('.footer-logo-large');
 if (footerLogoEl) {
   footerLogoEl.style.cursor = 'pointer';
   footerLogoEl.addEventListener('dblclick', promptAdminLogin);
