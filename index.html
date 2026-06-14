@@ -710,7 +710,7 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="footer-bottom-inner">
-          <p class="copyright-text">© <span id="copyright-year">2026</span> DC. All rights reserved.</p>
+          <p class="copyright-text">© <span id="copyright-year">2026</span> DC. All rights reserved. <span class="admin-demo-wrap">| <a href="admin.html" target="_blank" class="admin-demo-link">View Admin Demo</a> <span class="admin-demo-note">(Part of the full-stack demonstration)</span></span></p>
           <div class="footer-social-monochrome">
             <a href="https://www.instagram.com/divyraj.33" target="_blank" aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -739,14 +739,16 @@
   </div>
 
   <!-- Portfolio Demo Modal -->
-  <div id="demoModal" class="modal-overlay">
+  <div id="demoModal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <button class="modal-close" id="closeDemoModal">&times;</button>
-      <h3 class="modal-heading">This is a demonstration website</h3>
-      <p class="modal-body">Created for portfolio purposes. DC is an imaginary brand. For a real detailing website like this, let's talk.</p>
+      <button class="modal-close" id="closeDemoModal" aria-label="Close modal">&times;</button>
+      <h3 class="modal-heading" id="modalTitle">This is a Demo</h3>
+      <p class="modal-body">DC is an imaginary brand created for portfolio demonstration. Bookings cannot be completed. The admin dashboard you see is part of the showcase — a full booking flow from customer form to admin panel.</p>
+      <div class="modal-divider"></div>
+      <h4 class="modal-subheading">Want a website like this?</h4>
       <div class="modal-actions">
-        <a href="mailto:divyarajc2@gmail.com" class="btn-primary modal-btn">Get in Touch</a>
-        <a href="https://www.instagram.com/divyraj.33" target="_blank" class="btn-secondary modal-btn">View More Work</a>
+        <a href="https://www.instagram.com/divyraj.33" target="_blank" class="modal-btn-secondary">View Portfolio</a>
+        <a href="mailto:divyarajc2@gmail.com" class="modal-btn-primary">Get in Touch</a>
       </div>
     </div>
   </div>

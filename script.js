@@ -557,12 +557,21 @@ if (copyrightYearEl2) {
 // ─── Portfolio Demo Modal Handler ────────────────────────────────────────────
 const demoModal = document.getElementById('demoModal');
 const closeDemoModalBtn = document.getElementById('closeDemoModal');
+let previousActiveElement = null;
 
 function openDemoModal() {
   if (demoModal) {
+    previousActiveElement = document.activeElement;
     demoModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Lock scroll
+    
+    // Animate
     setTimeout(() => {
       demoModal.classList.add('active');
+      const focusable = demoModal.querySelectorAll('a, button');
+      if (focusable.length > 0) {
+        focusable[0].focus();
+      }
     }, 10);
   }
 }
@@ -570,8 +579,12 @@ function openDemoModal() {
 function closeDemoModal() {
   if (demoModal) {
     demoModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scroll
     setTimeout(() => {
       demoModal.style.display = 'none';
+      if (previousActiveElement) {
+        previousActiveElement.focus();
+      }
     }, 300);
   }
 }
@@ -587,12 +600,68 @@ if (demoModal) {
   });
 }
 
-// Trigger modal on sticky bar book button click
-const stickyBookBtn = document.querySelector('.sticky-book');
-if (stickyBookBtn) {
-  stickyBookBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openDemoModal();
+// Escape key closes modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && demoModal && demoModal.classList.contains('active')) {
+    closeDemoModal();
+  }
+});
+
+// Trapping Focus inside Modal
+if (demoModal) {
+  demoModal.addEventListener('keydown', (e) => {
+    const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+    if (!isTabPressed) return;
+
+    const focusableEls = demoModal.querySelectorAll('a[href], button:not([disabled])');
+    const firstFocusable = focusableEls[0];
+    const lastFocusable = focusableEls[focusableEls.length - 1];
+
+    if (e.shiftKey) { /* shift + tab */
+      if (document.activeElement === firstFocusable) {
+        lastFocusable.focus();
+        e.preventDefault();
+      }
+    } else { /* tab */
+      if (document.activeElement === lastFocusable) {
+        firstFocusable.focus();
+        e.preventDefault();
+      }
+    }
   });
 }
+
+// Global Demo Trigger Binder
+function bindDemoTriggers() {
+  document.querySelectorAll('a, button').forEach(el => {
+    const text = el.textContent || '';
+    const href = el.getAttribute('href') || '';
+    
+    // Check if button/link text or attributes denote booking or calling
+    const isBookOrCreateQuote = text.includes('Book') || 
+                                text.includes('Quote') || 
+                                text.includes('Call') || 
+                                href.startsWith('tel:');
+                                
+    // Exclude links/buttons inside the modal itself, or form step navigation
+    const isInsideModal = el.closest('#demoModal');
+    const isFormNav = el.classList.contains('form-btn-next') || 
+                       el.classList.contains('form-btn-prev') || 
+                       text.includes('Step') ||
+                       el.closest('.form-btn-group');
+    const isFinalSubmit = el.id === 'submitBtn' || el.classList.contains('form-submit-btn');
+
+    if (isBookOrCreateQuote && !isInsideModal) {
+      if (!isFormNav || isFinalSubmit) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          openDemoModal();
+        });
+      }
+    }
+  });
+}
+
+// Bind triggers initially
+bindDemoTriggers();
 
