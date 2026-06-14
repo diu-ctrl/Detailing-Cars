@@ -1891,31 +1891,46 @@ input, select, textarea { font-family: var(--font); }
   right: 0;
   z-index: 900;
   display: none;
-  background: var(--dark-2);
+  background: var(--bg-secondary);
   border-top: 1px solid var(--border);
-  padding: 10px 16px;
-  gap: 10px;
+  padding: 12px 16px;
+  gap: 12px;
 }
 .sticky-call {
   flex: 1;
   padding: 14px;
   text-align: center;
-  background: var(--dark-3);
+  background: transparent;
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0 !important;
   font-size: 14px;
-  font-weight: 700;
-  color: var(--white);
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.sticky-call:active {
+  transform: scale(0.98);
 }
 .sticky-book {
   flex: 2;
   padding: 14px;
   text-align: center;
   background: var(--accent);
-  border-radius: var(--radius-sm);
+  border-radius: 0 !important;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--bg-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.sticky-book:active {
+  transform: scale(0.98);
 }
 
 /* ===================================
