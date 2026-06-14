@@ -317,6 +317,11 @@ function handleBooking(e) {
 
       // Confetti-style celebration
       spawnConfetti();
+
+      // Show portfolio demo modal
+      setTimeout(() => {
+        if (typeof openDemoModal === 'function') openDemoModal();
+      }, 1000);
     }, 800);
   }
 }
@@ -546,6 +551,48 @@ if (copyrightYearEl2) {
     }
     // reset click count after 3 seconds of inactivity
     setTimeout(() => { clickCount = 0; }, 3000);
+  });
+}
+
+// ─── Portfolio Demo Modal Handler ────────────────────────────────────────────
+const demoModal = document.getElementById('demoModal');
+const closeDemoModalBtn = document.getElementById('closeDemoModal');
+
+function openDemoModal() {
+  if (demoModal) {
+    demoModal.style.display = 'flex';
+    setTimeout(() => {
+      demoModal.classList.add('active');
+    }, 10);
+  }
+}
+
+function closeDemoModal() {
+  if (demoModal) {
+    demoModal.classList.remove('active');
+    setTimeout(() => {
+      demoModal.style.display = 'none';
+    }, 300);
+  }
+}
+
+if (closeDemoModalBtn) {
+  closeDemoModalBtn.addEventListener('click', closeDemoModal);
+}
+if (demoModal) {
+  demoModal.addEventListener('click', (e) => {
+    if (e.target === demoModal) {
+      closeDemoModal();
+    }
+  });
+}
+
+// Trigger modal on sticky bar book button click
+const stickyBookBtn = document.querySelector('.sticky-book');
+if (stickyBookBtn) {
+  stickyBookBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openDemoModal();
   });
 }
 

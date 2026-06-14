@@ -2108,3 +2108,84 @@ input, select, textarea { font-family: var(--font); }
     transition-delay: 0s !important;
   }
 }
+
+/* ===================================
+   PORTFOLIO DEMO MODAL
+   =================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 6, 6, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 48px 32px;
+  width: 90%;
+  max-width: 440px;
+  position: relative;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition);
+}
+.modal-close:hover {
+  color: var(--accent);
+}
+
+.modal-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.modal-body {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-btn {
+  padding: 12px 24px !important;
+  font-size: 0.875rem !important;
+  border-radius: 0 !important;
+}
+
