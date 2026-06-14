@@ -1340,19 +1340,26 @@ input, select, textarea { font-family: var(--font); }
   text-align: center;
 }
 .reviews-section .section-subtitle { margin-left: auto; margin-right: auto; }
-.reviews-grid {
+.reviews-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
   text-align: left;
 }
 .review-card {
   background: var(--dark-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 32px;
   transition: var(--transition);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.review-card.card-large {
+  grid-column: span 2;
+  padding: 48px;
 }
 .review-card:hover {
   border-color: rgba(197, 160, 89, 0.2);
@@ -1370,11 +1377,6 @@ input, select, textarea { font-family: var(--font); }
   font-family: var(--font-serif);
   font-style: italic;
 }
-.review-stars {
-  font-size: 16px;
-  margin-bottom: 14px;
-  letter-spacing: 2px;
-}
 .review-text {
   font-family: var(--font-serif);
   font-style: italic;
@@ -1386,24 +1388,36 @@ input, select, textarea { font-family: var(--font); }
 .review-author {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
-.review-avatar {
-  width: 42px;
-  height: 42px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
+.review-name {
+  font-weight: 600;
   color: var(--text-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 800;
-  flex-shrink: 0;
 }
-.review-name { font-size: 14px; font-weight: 700; color: var(--white); }
-.review-location { font-size: 12px; color: var(--text-muted); }
+.review-divider {
+  color: var(--text-secondary);
+}
+.review-location {
+  color: var(--text-secondary);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+@media (max-width: 768px) {
+  .reviews-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .review-card.card-large {
+    grid-column: span 1;
+    padding: 32px;
+  }
+}
 
 /* ===================================
    FAQ SECTION
