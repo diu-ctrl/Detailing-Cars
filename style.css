@@ -1266,6 +1266,8 @@ input, select, textarea { font-family: var(--font); }
   display: block;
   border-radius: 0 !important;
   filter: brightness(0.9);
+  transform: scale(1.15); /* Zoom in to crop out Gemini watermark */
+  transform-origin: center;
   transition: filter 0.3s ease;
 }
 .scroller-item:hover img {
