@@ -1588,6 +1588,14 @@ input, select, textarea { font-family: var(--font); }
   background-size: 16px;
   padding-right: 40px;
 }
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(68%) sepia(35%) saturate(783%) hue-rotate(6deg) brightness(89%) contrast(88%);
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  filter: invert(74%) sepia(87%) saturate(347%) hue-rotate(358deg) brightness(91%) contrast(90%);
+}
 .form-group input::placeholder { color: var(--text-muted); }
 .form-group select option { background: var(--dark-3); color: var(--white); }
 .form-group input:focus,
