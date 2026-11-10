@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/logo_square.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-primary: #0a0a0a;
@@ -16,13 +16,13 @@
       --text-primary: #f5f0e8;
       --text-secondary: #8a8580;
       --text-muted: #5a5550;
-      --accent: #c5a059;
-      --accent-hover: #d4af37;
-      --accent-rgb: 197, 160, 89;
+      --accent: #fcdf00;
+      --accent-hover: #ffe328;
+      --accent-rgb: 252, 223, 0;
       --border: rgba(245, 240, 232, 0.08);
       --primary: var(--accent);
       --primary-dark: var(--accent-hover);
-      --primary-glow: rgba(197, 160, 89, 0.15);
+      --primary-glow: rgba(252, 223, 0, 0.15);
       --dark: var(--bg-primary);
       --dark-2: var(--bg-secondary);
       --dark-3: var(--bg-elevated);
@@ -31,9 +31,9 @@
       --radius: 0px;
       --radius-sm: 0px;
       --radius-lg: 0px;
-      --font: 'Space Grotesk', sans-serif;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-serif: 'Instrument Serif', serif;
+      --font: 'Inter', sans-serif;
+      --font-display: 'Montserrat', sans-serif;
+      --font-serif: 'Inter', sans-serif;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -99,7 +99,7 @@
     .dash-brand { display: flex; align-items: center; gap: 14px; }
     .dash-logo { height: 28px; width: auto; }
     .dash-badge {
-      background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.25);
+      background: rgba(252, 223, 0, 0.1); border: 1px solid rgba(252, 223, 0, 0.25);
       color: var(--accent); font-size: 0.6rem; font-weight: 700;
       padding: 3px 10px; letter-spacing: 0.1em; text-transform: uppercase;
     }
@@ -177,13 +177,13 @@
     }
     .chart-bar-count { font-size: 0.65rem; color: var(--text-muted); }
     .chart-bar {
-      width: 100%; background: rgba(197, 160, 89, 0.12);
-      border: 1px solid rgba(197, 160, 89, 0.2);
+      width: 100%; background: rgba(252, 223, 0, 0.12);
+      border: 1px solid rgba(252, 223, 0, 0.2);
       border-top: 2px solid var(--accent);
       transition: background 0.2s;
       min-height: 4px;
     }
-    .chart-bar:hover { background: rgba(197, 160, 89, 0.22); }
+    .chart-bar:hover { background: rgba(252, 223, 0, 0.22); }
     .chart-day { font-size: 0.6rem; color: var(--text-muted); margin-top: 4px; }
 
     /* ─── Filter Bar ─── */
@@ -215,7 +215,7 @@
       font-family: var(--font);
     }
     .filter-tab:hover { color: var(--white); border-color: rgba(245,240,232,0.2); }
-    .filter-tab.active { background: rgba(197,160,89,0.1); color: var(--accent); border-color: rgba(197,160,89,0.3); }
+    .filter-tab.active { background: rgba(252,223,0,0.1); color: var(--accent); border-color: rgba(252,223,0,0.3); }
 
     .filter-bar-right { display: flex; align-items: center; gap: 8px; }
 
@@ -280,7 +280,7 @@
       color: var(--text-secondary); white-space: nowrap;
     }
     .service-tag {
-      background: rgba(197, 160, 89, 0.07); border: 1px solid rgba(197, 160, 89, 0.18);
+      background: rgba(252, 223, 0, 0.07); border: 1px solid rgba(252, 223, 0, 0.18);
       color: var(--accent); padding: 3px 9px; font-size: 0.7rem;
       font-weight: 600; white-space: nowrap;
     }
@@ -293,7 +293,7 @@
     .status-badge::before {
       content: ''; width: 5px; height: 5px; border-radius: 50%;
     }
-    .status-badge.pending { background: rgba(197,160,89,0.1); color: var(--accent); }
+    .status-badge.pending { background: rgba(252,223,0,0.1); color: var(--accent); }
     .status-badge.pending::before { background: var(--accent); }
     .status-badge.confirmed { background: rgba(74, 143, 199, 0.1); color: #4a8fc7; }
     .status-badge.confirmed::before { background: #4a8fc7; }
@@ -356,19 +356,19 @@
       position: relative; vertical-align: top;
     }
     .cal-cell.other-month { background: var(--bg-primary); }
-    .cal-cell.today { outline: 1px solid rgba(197,160,89,0.35); outline-offset: -1px; }
+    .cal-cell.today { outline: 1px solid rgba(252,223,0,0.35); outline-offset: -1px; }
     .cal-date {
       font-size: 0.7rem; color: var(--text-muted); font-weight: 500;
       margin-bottom: 4px;
     }
     .cal-cell.today .cal-date { color: var(--accent); }
     .cal-appt {
-      background: rgba(197,160,89,0.1); border-left: 2px solid var(--accent);
+      background: rgba(252,223,0,0.1); border-left: 2px solid var(--accent);
       padding: 2px 5px; font-size: 0.6rem; color: var(--text-secondary);
       margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       cursor: pointer;
     }
-    .cal-appt:hover { background: rgba(197,160,89,0.18); }
+    .cal-appt:hover { background: rgba(252,223,0,0.18); }
 
     /* ─── Mobile Card Layout ─── */
     .mobile-cards { display: none; }
@@ -410,7 +410,7 @@
     /* ─── Toast ─── */
     .toast-container { position: fixed; top: 20px; right: 20px; z-index: 11000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
     .toast-msg {
-      background: var(--bg-secondary); border: 1px solid rgba(197,160,89,0.3);
+      background: var(--bg-secondary); border: 1px solid rgba(252,223,0,0.3);
       padding: 14px 18px; color: var(--white);
       display: flex; align-items: center; gap: 10px; min-width: 280px;
       pointer-events: auto; transform: translateX(120%);
@@ -423,7 +423,7 @@
 
     /* ─── Keyframes ─── */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes new-row-flash { 0% { background: rgba(197,160,89,0.15); } 100% { background: transparent; } }
+    @keyframes new-row-flash { 0% { background: rgba(252,223,0,0.15); } 100% { background: transparent; } }
     .new-row-flash { animation: new-row-flash 2.5s ease-out; }
 
     /* ─── Responsive ─── */
@@ -866,7 +866,7 @@
         // Mobile card
         const card = document.createElement('div');
         card.className = 'mobile-card';
-        if (newIds.includes(appt.id)) card.style.background = 'rgba(197,160,89,0.05)';
+        if (newIds.includes(appt.id)) card.style.background = 'rgba(252,223,0,0.05)';
         card.innerHTML = `
           <div class="mobile-card-header">
             <div>

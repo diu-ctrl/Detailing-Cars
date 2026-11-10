@@ -3,150 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DC — #1 Premium Car Detailing in Ahmedabad | Ceramic Coating & Paint Protection</title>
+  <title>DC — #1 Premium Car Detailing in Ahmedabad | Ceramic Coating &amp; Paint Protection</title>
   <meta name="description" content="DC — Ahmedabad's most premium mobile car detailing service. Ceramic coating, paint correction, interior detailing. We come to you. Book now.">
+  <meta name="theme-color" content="#000000">
   <meta property="og:type" content="website">
   <meta property="og:title" content="DC — Premium Car Detailing Ahmedabad">
   <meta property="og:description" content="Ahmedabad's most trusted car detailing. Ceramic coating, paint correction, interior detailing. Book online today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=29">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=30">
   <link rel="preload" as="image" href="assets/hero_dc.png?v=3">
   <link rel="icon" type="image/png" href="assets/logo_square.png?v=2">
 </head>
 <body>
 
-  <!-- OFFER BAR -->
-  <div class="offer-bar" id="offerBar">
-    <div class="offer-bar-inner">
-      <svg class="offer-tag-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-      <span class="offer-bar-text">Summer Special — All full detail packages include <strong>Free 3-Month Ceramic Wax</strong> (Worth ₹1,500). Limited slots!</span>
-    </div>
-    <button class="offer-close-btn" id="offerBarClose" aria-label="Close Announcement">&times;</button>
-  </div>
+  <a class="skip-link" href="#services">Skip to content</a>
 
-  <!-- FLOATING CAPSULE NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo" aria-label="DC Home">
+  <!-- ══════════ NAVBAR ══════════ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner container">
+      <a href="#home" class="nav-logo" aria-label="DC Home">
         <img src="assets/logo.png?v=2" alt="DC Logo" class="logo-img-main" />
       </a>
-      <div class="nav-links-box">
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#packages">Gift Cards</a></li>
-          <li class="nav-dropdown-wrap">
-            <a href="#services" class="nav-dropdown-trigger">
-              Services <svg class="chevron-icon" viewBox="0 0 10 6" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
-            </a>
-            <div class="nav-dropdown" id="servicesDropdown">
-              <a href="#services" class="dropdown-item">Car Detailing</a>
-              <a href="#services" class="dropdown-item">Ceramic Coating</a>
-              <a href="#services" class="dropdown-item">Window Tinting</a>
-              <a href="#services" class="dropdown-item">Paint Protection Film</a>
-              <a href="#services" class="dropdown-item">Interior Detailing</a>
-              <a href="#services" class="dropdown-item">Engine Bay Cleaning</a>
-              <a href="#services" class="dropdown-item">Fleet Cleaning</a>
-            </div>
-          </li>
-        </ul>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#packages">Packages</a>
+        <a href="#gift-cards">Gift cards</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="tel:+919979787087" class="nav-phone" aria-label="Call DC">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <span class="nav-phone-num">+91 99797 87087</span>
+        </a>
+        <a href="#book" class="btn btn-primary btn-nav">Book now</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <a href="tel:+919979787087" class="nav-phone-btn" id="navPhoneBtn">
-        <span class="nav-phone-icon">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-        </span>
-        <span class="nav-phone-text">
-          <span class="nav-phone-label">Call us today</span>
-          <span class="nav-phone-number">+91 99797 87087</span>
-        </span>
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#home">Home</a>
-      <a href="#packages">Gift Cards</a>
-      <a href="#services">Car Detailing</a>
-      <a href="#services">Ceramic Coating</a>
-      <a href="#services">Window Tinting</a>
-      <a href="#services">Paint Protection Film</a>
+      <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
+      <a href="#gift-cards">Gift cards</a>
+      <a href="#gallery">Gallery</a>
       <a href="#faq">FAQ</a>
       <a href="tel:+919979787087" class="mobile-phone-link">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: var(--primary);"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:8px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
         +91 99797 87087
       </a>
-      <a href="#book" class="mobile-book-btn">Book Now</a>
+      <a href="#book" class="mobile-book-btn">Book now</a>
     </div>
-  </nav>
+  </header>
 
+  <main>
   <!-- ══════════ HERO ══════════ -->
   <section class="hero" id="home">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-container">
       <div class="hero-content">
-        <span class="hero-eyebrow">PREMIUM MOBILE DETAILING</span>
-        <h1 class="hero-title">The studio<br>comes to you</h1>
+        <span class="hero-eyebrow">Mobile detailing — Ahmedabad</span>
+        <h1 class="hero-title">The studio<br>comes to you.</h1>
         <p class="hero-sub">Ceramic coating, paint correction, and interior detailing — done at your doorstep across Ahmedabad.</p>
         <div class="hero-cta-group">
-          <a href="#book" class="btn-primary" id="hero-book-btn">Get Free Quote →</a>
-          <a href="#services" class="btn-secondary">View Services</a>
+          <a href="#book" class="btn btn-primary">Get free quote <span class="btn-arrow">→</span></a>
+          <a href="#services" class="btn btn-ghost">View services</a>
         </div>
       </div>
+      <div class="hero-meta">
+        <span>We come to you — all of Ahmedabad</span>
+        <span>Supplies &amp; water included</span>
+        <span>Pay after the detail</span>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════ SERVICES ══════════ -->
-  <section class="services-section" id="services">
+  <section class="section services-section" id="services">
     <div class="container">
-      <div class="section-eyebrow">OUR SERVICES</div>
-      <h2 class="section-title">Transform Your Vehicle</h2>
-      <p class="section-sub">Professional auto detailing services delivered to your doorstep across Ahmedabad. No need to leave home or office!</p>
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">01</span>Services</div>
+        <h2 class="section-title">Full-studio work, at your door.</h2>
+        <p class="section-sub">Professional auto detailing delivered to your doorstep across Ahmedabad. No need to leave home or office.</p>
+      </header>
       <div class="services-grid">
-        <a href="#packages" class="service-card exterior-card" data-aos="fade-up">
+        <a href="#packages" class="service-card exterior-card" data-reveal>
           <div class="service-img-wrap">
-            <img src="assets/service_exterior.png?v=2" alt="Exterior Wash & Wax" />
-            <div class="service-overlay"></div>
+            <img src="assets/service_exterior.png?v=2" alt="Exterior wash and wax" loading="lazy" />
+            <div class="service-overlay" aria-hidden="true"></div>
           </div>
           <div class="service-info">
             <span class="service-num">01</span>
-            <h3>Exterior Wash & Wax</h3>
+            <h3>Exterior Wash &amp; Wax</h3>
           </div>
         </a>
-        <a href="#packages" class="service-card interior-card" data-aos="fade-up" data-aos-delay="100">
+        <a href="#packages" class="service-card interior-card" data-reveal>
           <div class="service-img-wrap">
-            <img src="assets/interior_detail.png?v=2" alt="Interior Detailing" />
-            <div class="service-overlay"></div>
+            <img src="assets/interior_detail.png?v=2" alt="Interior detailing" loading="lazy" />
+            <div class="service-overlay" aria-hidden="true"></div>
           </div>
           <div class="service-info">
             <span class="service-num">02</span>
             <h3>Interior Detailing</h3>
           </div>
         </a>
-        <a href="#packages" class="service-card correction-card" data-aos="fade-up" data-aos-delay="200">
+        <a href="#packages" class="service-card correction-card" data-reveal>
           <div class="service-img-wrap">
-            <img src="assets/paint_correction.png?v=2" alt="Paint Correction" />
-            <div class="service-overlay"></div>
+            <img src="assets/paint_correction.png?v=2" alt="Paint correction" loading="lazy" />
+            <div class="service-overlay" aria-hidden="true"></div>
           </div>
           <div class="service-info">
             <span class="service-num">03</span>
             <h3>Paint Correction</h3>
           </div>
         </a>
-        <a href="#packages" class="service-card ceramic-card" data-aos="fade-up" data-aos-delay="300">
+        <a href="#packages" class="service-card ceramic-card" data-reveal>
           <div class="service-img-wrap">
-            <img src="assets/ceramic_coating.png?v=2" alt="Ceramic Coating" />
-            <div class="service-overlay"></div>
+            <img src="assets/ceramic_coating.png?v=2" alt="Ceramic coating" loading="lazy" />
+            <div class="service-overlay" aria-hidden="true"></div>
           </div>
           <div class="service-info">
             <span class="service-num">04</span>
             <h3>Ceramic Coating</h3>
           </div>
         </a>
-        <a href="#packages" class="service-card engine-card" data-aos="fade-up" data-aos-delay="400">
+        <a href="#packages" class="service-card engine-card" data-reveal>
           <div class="service-img-wrap">
-            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1000" alt="Engine Bay Detailing" />
-            <div class="service-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1000" alt="Engine bay detailing" loading="lazy" />
+            <div class="service-overlay" aria-hidden="true"></div>
           </div>
           <div class="service-info">
             <span class="service-num">05</span>
@@ -154,22 +140,55 @@
           </div>
         </a>
       </div>
+
+      <div class="vehicles-strip" data-reveal>
+        <div class="vehicles-label">We detail</div>
+        <div class="vehicles-grid">
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/1.png" alt="Hatch or Sedan" class="vehicle-icon-img" loading="lazy" />
+            <span>Hatch / Sedan</span>
+          </div>
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/2.png" alt="SUV or MUV" class="vehicle-icon-img" loading="lazy" />
+            <span>SUV / MUV</span>
+          </div>
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/3.png" alt="Truck or Pickup" class="vehicle-icon-img" loading="lazy" />
+            <span>Truck / Pickup</span>
+          </div>
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/4.png" alt="Van or Traveller" class="vehicle-icon-img" loading="lazy" />
+            <span>Van / Traveller</span>
+          </div>
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/5.png" alt="Sports or Luxury" class="vehicle-icon-img" loading="lazy" />
+            <span>Sports / Luxury</span>
+          </div>
+          <div class="vehicle-item">
+            <img src="assets/vehicle icons/6.png" alt="Commercial Fleet" class="vehicle-icon-img" loading="lazy" />
+            <span>Commercial Fleet</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ══════════ PACKAGES ══════════ -->
-  <section class="packages-section" id="packages">
+  <section class="section packages-section" id="packages">
     <div class="container">
-      <div class="section-eyebrow">DETAIL PACKAGES</div>
-      <h2 class="section-title">Choose Your Detail Package</h2>
-      <p class="section-sub">Tailored packages for every vehicle and every budget. All services at your location across Ahmedabad.</p>
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">02</span>Packages</div>
+        <h2 class="section-title">Choose your detail package.</h2>
+        <p class="section-sub">Tailored packages for every vehicle and every budget. All services at your location across Ahmedabad.</p>
+      </header>
       <div class="packages-grid">
         <!-- Essential -->
-        <div class="package-card">
-          <div class="package-tier-label">Starter</div>
+        <div class="package-card" data-reveal>
+          <div class="package-tier">Starter</div>
           <h3 class="package-name">Essential Clean</h3>
           <div class="package-price-wrap">
-            <span class="price-amount">From ₹999</span>
+            <span class="price-from">From</span>
+            <span class="price-amount">₹999</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Exterior Hand Wash</li>
@@ -181,14 +200,15 @@
             <li class="disabled"><span class="cross">✗</span> Wax / Sealant</li>
             <li class="disabled"><span class="cross">✗</span> Leather Conditioning</li>
           </ul>
-          <a href="#book" class="package-btn package-btn-outline">Book Essential</a>
+          <a href="#book" class="btn btn-ghost package-btn">Book Essential</a>
         </div>
         <!-- Premium (Featured) -->
-        <div class="package-card package-card-featured">
-          <div class="package-tier-label">Best Value</div>
+        <div class="package-card package-card-featured" data-reveal>
+          <div class="package-tier featured-tier"><span class="tier-dot" aria-hidden="true"></span>Best value</div>
           <h3 class="package-name">Premium Detail</h3>
           <div class="package-price-wrap">
-            <span class="price-amount">From ₹2,499</span>
+            <span class="price-from">From</span>
+            <span class="price-amount">₹2,499</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Essential</li>
@@ -200,14 +220,15 @@
             <li><span class="check">✓</span> Odour Elimination</li>
             <li class="disabled"><span class="cross">✗</span> Paint Correction</li>
           </ul>
-          <a href="#book" class="package-btn package-btn-primary">Book Premium</a>
+          <a href="#book" class="btn btn-primary package-btn">Book Premium</a>
         </div>
         <!-- Elite -->
-        <div class="package-card">
-          <div class="package-tier-label">Full Service</div>
+        <div class="package-card" data-reveal>
+          <div class="package-tier">Full service</div>
           <h3 class="package-name">Elite Detail</h3>
           <div class="package-price-wrap">
-            <span class="price-amount">From ₹4,499</span>
+            <span class="price-from">From</span>
+            <span class="price-amount">₹4,499</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Premium</li>
@@ -219,14 +240,15 @@
             <li><span class="check">✓</span> Pet Hair Removal</li>
             <li><span class="check">✓</span> Priority Scheduling</li>
           </ul>
-          <a href="#book" class="package-btn package-btn-outline">Book Elite</a>
+          <a href="#book" class="btn btn-ghost package-btn">Book Elite</a>
         </div>
         <!-- Ceramic Pro -->
-        <div class="package-card">
-          <div class="package-tier-label">Ultimate</div>
+        <div class="package-card" data-reveal>
+          <div class="package-tier">Ultimate</div>
           <h3 class="package-name">Ceramic Pro</h3>
           <div class="package-price-wrap">
-            <span class="price-amount">From ₹12,999</span>
+            <span class="price-from">From</span>
+            <span class="price-amount">₹12,999</span>
           </div>
           <ul class="package-features">
             <li><span class="check">✓</span> Everything in Elite</li>
@@ -238,13 +260,13 @@
             <li><span class="check">✓</span> Warranty Certificate</li>
             <li><span class="check">✓</span> Free Follow-up Wash</li>
           </ul>
-          <a href="#book" class="package-btn package-btn-outline">Book Ceramic</a>
+          <a href="#book" class="btn btn-ghost package-btn">Book Ceramic</a>
         </div>
       </div>
       <p class="package-note">*Final price depends on vehicle size and condition.</p>
-      <!-- Add-ons -->
-      <div class="addons-section">
-        <div class="addons-label">POPULAR ADD-ONS</div>
+
+      <div class="addons" data-reveal>
+        <div class="addons-label">Popular add-ons</div>
         <div class="addons-grid">
           <div class="addon-item">Pet Hair Removal <span class="addon-price">+₹499</span></div>
           <div class="addon-item">Window Tinting <span class="addon-price">+₹2,999</span></div>
@@ -257,124 +279,110 @@
     </div>
   </section>
 
-  <!-- ══════════ VEHICLES ══════════ -->
-  <section class="vehicles-section">
+  <!-- ══════════ GIFT CARDS ══════════ -->
+  <section class="section gift-section" id="gift-cards">
     <div class="container">
-      <div class="section-eyebrow">WE SERVICE</div>
-      <h2 class="section-title">Vehicles We Detail</h2>
-      <p class="section-sub">From hatchbacks to luxury SUVs — we detail every vehicle type across Ahmedabad.</p>
-      <div class="vehicles-grid">
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/1.png" alt="Hatch / Sedan" class="vehicle-icon-img" />
-          <span>Hatch / Sedan</span>
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">03</span>Gift cards</div>
+        <h2 class="section-title">Gift the shine.</h2>
+        <p class="section-sub">A DC gift card covers a full package at the recipient's doorstep — digital or printed, both accepted.</p>
+      </header>
+      <div class="gift-grid">
+        <div class="gift-card" data-reveal>
+          <div class="gift-label">Gift card</div>
+          <div class="gift-amount">₹999</div>
+          <p class="gift-desc">The Essential Clean — hand wash, interior vacuum, windows and tyre shine.</p>
+          <div class="gift-code">DC-GIFT-999</div>
+          <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
+          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/2.png" alt="SUV / MUV" class="vehicle-icon-img" />
-          <span>SUV / MUV</span>
+        <div class="gift-card" data-reveal>
+          <div class="gift-label">Gift card</div>
+          <div class="gift-amount">₹2,499</div>
+          <p class="gift-desc">The Premium Detail — steam cleaning, leather care, carnauba wax and more.</p>
+          <div class="gift-code">DC-GIFT-2499</div>
+          <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
+          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/3.png" alt="Truck / Pickup" class="vehicle-icon-img" />
-          <span>Truck / Pickup</span>
-        </div>
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/4.png" alt="Van / Traveller" class="vehicle-icon-img" />
-          <span>Van / Traveller</span>
-        </div>
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/5.png" alt="Sports / Luxury" class="vehicle-icon-img" />
-          <span>Sports / Luxury</span>
-        </div>
-        <div class="vehicle-item">
-          <img src="assets/vehicle icons/6.png" alt="Commercial Fleet" class="vehicle-icon-img" />
-          <span>Commercial Fleet</span>
+        <div class="gift-card" data-reveal>
+          <div class="gift-label">Gift card</div>
+          <div class="gift-amount">₹4,499</div>
+          <p class="gift-desc">The Elite Detail — paint correction, sealant, headlight restoration, the works.</p>
+          <div class="gift-code">DC-GIFT-4499</div>
+          <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
+          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ══════════ SHINE BANNER ══════════ -->
-  <section class="shine-banner">
-    <div class="shine-banner-bg">
-      <img src="assets/detailing_polish.png?v=2" alt="Make it Shine" class="shine-bg-img" />
-      <div class="shine-overlay"></div>
-    </div>
-    <div class="shine-content">
-      <div class="section-eyebrow light">BOOK TODAY</div>
-      <h2>Make It Shine Like New</h2>
-      <p>Your car deserves the finest care in Ahmedabad. Book your premium detail today and experience the DC difference.</p>
-      <a href="#book" class="btn-primary">Book My Detail Now</a>
     </div>
   </section>
 
   <!-- ══════════ GALLERY ══════════ -->
-  <section class="gallery-section" id="gallery">
+  <section class="section gallery-section" id="gallery">
     <div class="container">
-      <div class="section-eyebrow">OUR WORK</div>
-      <h2 class="section-title">Show Your Car Some Love.</h2>
-      <p class="section-sub">Real results from real customers across Ahmedabad & Gujarat. We let our work speak for itself.</p>
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">04</span>Recent work</div>
+        <h2 class="section-title">Proof in the paint.</h2>
+        <p class="section-sub">Real results from real customers across Ahmedabad &amp; Gujarat. Tap any frame to zoom.</p>
+      </header>
     </div>
     <div class="gallery-scroller-wrap">
-      <!-- Top Row: Moves Left — images 1 to 9 -->
       <div class="gallery-row row-left">
         <div class="gallery-track">
-          <!-- Set 1 -->
-          <div class="scroller-item"><img src="assets/cars/1.png" alt="Car detailing 1" /></div>
-          <div class="scroller-item"><img src="assets/cars/2.png" alt="Car detailing 2" /></div>
-          <div class="scroller-item"><img src="assets/cars/3.png" alt="Car detailing 3" /></div>
-          <div class="scroller-item"><img src="assets/cars/4.png" alt="Car detailing 4" /></div>
-          <div class="scroller-item"><img src="assets/cars/5.png" alt="Car detailing 5" /></div>
-          <div class="scroller-item"><img src="assets/cars/6.png" alt="Car detailing 6" /></div>
-          <div class="scroller-item"><img src="assets/cars/7.png" alt="Car detailing 7" /></div>
-          <div class="scroller-item"><img src="assets/cars/8.png" alt="Car detailing 8" /></div>
-          <div class="scroller-item"><img src="assets/cars/9.png" alt="Car detailing 9" /></div>
-          <!-- Set 2 (Duplicated for seamless loop) -->
-          <div class="scroller-item"><img src="assets/cars/1.png" alt="Car detailing 1" /></div>
-          <div class="scroller-item"><img src="assets/cars/2.png" alt="Car detailing 2" /></div>
-          <div class="scroller-item"><img src="assets/cars/3.png" alt="Car detailing 3" /></div>
-          <div class="scroller-item"><img src="assets/cars/4.png" alt="Car detailing 4" /></div>
-          <div class="scroller-item"><img src="assets/cars/5.png" alt="Car detailing 5" /></div>
-          <div class="scroller-item"><img src="assets/cars/6.png" alt="Car detailing 6" /></div>
-          <div class="scroller-item"><img src="assets/cars/7.png" alt="Car detailing 7" /></div>
-          <div class="scroller-item"><img src="assets/cars/8.png" alt="Car detailing 8" /></div>
-          <div class="scroller-item"><img src="assets/cars/9.png" alt="Car detailing 9" /></div>
+          <div class="scroller-item"><img src="assets/cars/1.png" alt="Car detailing work 1" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/2.png" alt="Car detailing work 2" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/3.png" alt="Car detailing work 3" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/4.png" alt="Car detailing work 4" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/5.png" alt="Car detailing work 5" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/6.png" alt="Car detailing work 6" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/7.png" alt="Car detailing work 7" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/8.png" alt="Car detailing work 8" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/9.png" alt="Car detailing work 9" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/1.png" alt="Car detailing work 1" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/2.png" alt="Car detailing work 2" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/3.png" alt="Car detailing work 3" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/4.png" alt="Car detailing work 4" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/5.png" alt="Car detailing work 5" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/6.png" alt="Car detailing work 6" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/7.png" alt="Car detailing work 7" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/8.png" alt="Car detailing work 8" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/9.png" alt="Car detailing work 9" loading="lazy" /></div>
         </div>
       </div>
-
-      <!-- Bottom Row: Moves Right — images 10 to 18 -->
       <div class="gallery-row row-right">
         <div class="gallery-track">
-          <!-- Set 1 -->
-          <div class="scroller-item"><img src="assets/cars/10.png" alt="Car detailing 10" /></div>
-          <div class="scroller-item"><img src="assets/cars/11.png" alt="Car detailing 11" /></div>
-          <div class="scroller-item"><img src="assets/cars/12.png" alt="Car detailing 12" /></div>
-          <div class="scroller-item"><img src="assets/cars/13.png" alt="Car detailing 13" /></div>
-          <div class="scroller-item"><img src="assets/cars/14.png" alt="Car detailing 14" /></div>
-          <div class="scroller-item"><img src="assets/cars/15.png" alt="Car detailing 15" /></div>
-          <div class="scroller-item"><img src="assets/cars/16.png" alt="Car detailing 16" /></div>
-          <div class="scroller-item"><img src="assets/cars/17.png" alt="Car detailing 17" /></div>
-          <div class="scroller-item"><img src="assets/cars/18.png" alt="Car detailing 18" /></div>
-          <!-- Set 2 (Duplicated for seamless loop) -->
-          <div class="scroller-item"><img src="assets/cars/10.png" alt="Car detailing 10" /></div>
-          <div class="scroller-item"><img src="assets/cars/11.png" alt="Car detailing 11" /></div>
-          <div class="scroller-item"><img src="assets/cars/12.png" alt="Car detailing 12" /></div>
-          <div class="scroller-item"><img src="assets/cars/13.png" alt="Car detailing 13" /></div>
-          <div class="scroller-item"><img src="assets/cars/14.png" alt="Car detailing 14" /></div>
-          <div class="scroller-item"><img src="assets/cars/15.png" alt="Car detailing 15" /></div>
-          <div class="scroller-item"><img src="assets/cars/16.png" alt="Car detailing 16" /></div>
-          <div class="scroller-item"><img src="assets/cars/17.png" alt="Car detailing 17" /></div>
-          <div class="scroller-item"><img src="assets/cars/18.png" alt="Car detailing 18" /></div>
+          <div class="scroller-item"><img src="assets/cars/10.png" alt="Car detailing work 10" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/11.png" alt="Car detailing work 11" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/12.png" alt="Car detailing work 12" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/13.png" alt="Car detailing work 13" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/14.png" alt="Car detailing work 14" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/15.png" alt="Car detailing work 15" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/16.png" alt="Car detailing work 16" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/17.png" alt="Car detailing work 17" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/18.png" alt="Car detailing work 18" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/10.png" alt="Car detailing work 10" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/11.png" alt="Car detailing work 11" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/12.png" alt="Car detailing work 12" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/13.png" alt="Car detailing work 13" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/14.png" alt="Car detailing work 14" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/15.png" alt="Car detailing work 15" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/16.png" alt="Car detailing work 16" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/17.png" alt="Car detailing work 17" loading="lazy" /></div>
+          <div class="scroller-item"><img src="assets/cars/18.png" alt="Car detailing work 18" loading="lazy" /></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ COMPARISON ══════════ -->
-  <section class="comparison-section">
+  <!-- ══════════ PROOF: COMPARISON + REVIEWS ══════════ -->
+  <section class="section proof-section" id="proof">
     <div class="container">
-      <div class="section-eyebrow">WHY CHOOSE US</div>
-      <h2 class="section-title">Regular Wash vs. DC</h2>
-      <p class="section-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Discover the DC difference — professional results that a regular wash simply can't match.</p>
-      <div class="comparison-table-wrap">
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">05</span>Why DC</div>
+        <h2 class="section-title">Proof, not promises.</h2>
+        <p class="section-sub">Discover the DC difference — professional results that a regular wash simply can't match.</p>
+      </header>
+
+      <div class="comparison-table-wrap" data-reveal>
         <table class="comparison-table">
           <thead>
             <tr>
@@ -384,65 +392,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Comes to Your Location</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Paint-Safe Hand Wash</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Interior Deep Cleaning</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Scratch & Swirl Removal</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Ceramic Coating Available</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Odour Elimination</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-yes dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Trained Professional Detailers</td>
-              <td class="symbol-partial">~</td>
-              <td class="symbol-premium dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Satisfaction Guarantee</td>
-              <td class="symbol-no">−</td>
-              <td class="symbol-premium dc-col">+</td>
-            </tr>
-            <tr>
-              <td>Online Booking</td>
-              <td class="symbol-partial">~</td>
-              <td class="symbol-premium dc-col">+</td>
-            </tr>
+            <tr><td>Comes to Your Location</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Paint-Safe Hand Wash</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Interior Deep Cleaning</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Scratch &amp; Swirl Removal</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Ceramic Coating Available</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Odour Elimination</td><td class="symbol-no">−</td><td class="symbol-yes dc-col">+</td></tr>
+            <tr><td>Trained Professional Detailers</td><td class="symbol-partial">~</td><td class="symbol-premium dc-col">+</td></tr>
+            <tr><td>Satisfaction Guarantee</td><td class="symbol-no">−</td><td class="symbol-premium dc-col">+</td></tr>
+            <tr><td>Online Booking</td><td class="symbol-partial">~</td><td class="symbol-premium dc-col">+</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
-  </section>
 
-  <!-- ══════════ REVIEWS ══════════ -->
-  <section class="reviews-section">
-    <div class="container">
-      <div class="section-eyebrow">CUSTOMER LOVE</div>
-      <h2 class="section-title">What Our Customers Say</h2>
       <div class="reviews-layout">
-        <!-- Large Quote -->
-        <div class="review-card card-large">
+        <div class="review-card card-large" data-reveal>
           <p class="review-text">"My 2019 Fortuner had swirl marks from 4 years of drive-through washes. DC's paint correction took 6 hours at my home. The finish is better than when I bought it."</p>
           <div class="review-author">
             <span class="review-name">Rajesh Patel</span>
@@ -450,8 +414,7 @@
             <span class="review-location">Prahlad Nagar</span>
           </div>
         </div>
-        <!-- Medium Quotes -->
-        <div class="review-card">
+        <div class="review-card" data-reveal>
           <p class="review-text">"The ceramic coating package is worth every rupee. My BMW X5 repels water like magic even 8 months later. These guys are true professionals!"</p>
           <div class="review-author">
             <span class="review-name">Kavya Shah</span>
@@ -459,7 +422,7 @@
             <span class="review-location">Satellite</span>
           </div>
         </div>
-        <div class="review-card">
+        <div class="review-card" data-reveal>
           <p class="review-text">"Had a bad pet hair problem in my Innova Crysta. DC removed every trace — the interior smells and looks like brand new. Miraculous work!"</p>
           <div class="review-author">
             <span class="review-name">Arjun Mehta</span>
@@ -471,120 +434,131 @@
     </div>
   </section>
 
-  <!-- ══════════ FAQ ══════════ -->
-  <section class="faq-section" id="faq">
+  <!-- ══════════ PROCESS + FAQ ══════════ -->
+  <section class="section process-section" id="faq">
     <div class="container">
-      <div class="section-eyebrow">FAQ</div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" id="faq1">How long does a detail take?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq1-answer"><p>Time varies by package and vehicle size. An Essential Clean takes 1–2 hours, a Premium Detail 3–4 hours, and Elite or Ceramic packages can take 5–8 hours. We'll give you an accurate estimate at booking.</p></div>
+      <header class="section-head" data-reveal>
+        <div class="eyebrow"><span class="eyebrow-num">06</span>Simple process</div>
+        <h2 class="section-title">How DC works.</h2>
+      </header>
+      <div class="steps-grid">
+        <div class="step-item" data-reveal>
+          <div class="step-number">01</div>
+          <h3>Book online</h3>
+          <p>Fill our quick form or WhatsApp us. Choose your package, date, and Ahmedabad address in minutes.</p>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq2">Do you bring your own supplies and water?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq2-answer"><p>Yes! We are fully self-contained. We bring all professional-grade products, equipment, and water. You only need to provide a safe parking spot for your vehicle.</p></div>
+        <div class="step-item" data-reveal>
+          <div class="step-number">02</div>
+          <h3>We confirm</h3>
+          <p>Our team confirms via WhatsApp and sends a reminder. We'll be there on time, guaranteed.</p>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq3">Which areas in Ahmedabad do you serve?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq3-answer"><p>We service all of Ahmedabad including Satellite, Prahlad Nagar, Bopal, Thaltej, Science City, Gota, Chandkheda, Navrangpura, Maninagar, and surrounding areas. Not sure? Call +91 99797 87087!</p></div>
+        <div class="step-item" data-reveal>
+          <div class="step-number">03</div>
+          <h3>We detail</h3>
+          <p>Our certified detailers arrive with all supplies. You relax while we make your car shine.</p>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq4">How do I book an appointment?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq4-answer"><p>Click "Get Free Quote" or "Book Now" anywhere on our site. Fill the quick form with your vehicle type, package, date, and address. We confirm within 30 minutes. You can also call or WhatsApp us directly!</p></div>
+        <div class="step-item" data-reveal>
+          <div class="step-number">04</div>
+          <h3>Enjoy</h3>
+          <p>Inspect your freshly detailed car. 100% happy? Pay via UPI or cash. Not happy? We make it right.</p>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq5">Is your service satisfaction guaranteed?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq5-answer"><p>Absolutely! We stand behind every detail 100%. If you're not completely satisfied, we'll come back and make it right at no charge. Your happiness is our priority — no questions asked.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq6">Do I need to be present during the service?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq6-answer"><p>You don't have to be present! As long as we can access your vehicle and have a safe spot to work, you can go about your day. Many customers have us detail their car while they're at the office.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq7">What payment methods do you accept?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq7-answer"><p>We accept UPI (GPay, PhonePe, Paytm), all major credit & debit cards, net banking, and cash. Payment is collected after the service is complete and you're fully satisfied.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" id="faq8">How often should I get my car detailed?<span class="faq-icon">+</span></button>
-          <div class="faq-answer" id="faq8-answer"><p>For most vehicles, we recommend a full detail every 3–6 months. Given Ahmedabad's dust and heat, more frequent maintenance wash every 4–6 weeks is ideal to protect the paint in India's climate.</p></div>
+      </div>
+
+      <div class="faq-block">
+        <h3 class="faq-block-title">Frequently asked questions</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" id="faq1" aria-expanded="false">How long does a detail take?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq1-answer"><p>Time varies by package and vehicle size. An Essential Clean takes 1–2 hours, a Premium Detail 3–4 hours, and Elite or Ceramic packages can take 5–8 hours. We'll give you an accurate estimate at booking.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq2" aria-expanded="false">Do you bring your own supplies and water?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq2-answer"><p>Yes! We are fully self-contained. We bring all professional-grade products, equipment, and water. You only need to provide a safe parking spot for your vehicle.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq3" aria-expanded="false">Which areas in Ahmedabad do you serve?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq3-answer"><p>We service all of Ahmedabad including Satellite, Prahlad Nagar, Bopal, Thaltej, Science City, Gota, Chandkheda, Navrangpura, Maninagar, and surrounding areas. Not sure? Call +91 99797 87087!</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq4" aria-expanded="false">How do I book an appointment?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq4-answer"><p>Click "Get free quote" or "Book now" anywhere on our site. Fill the quick form with your vehicle type, package, date, and address. We confirm within 30 minutes. You can also call or WhatsApp us directly!</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq5" aria-expanded="false">Is your service satisfaction guaranteed?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq5-answer"><p>Absolutely! We stand behind every detail 100%. If you're not completely satisfied, we'll come back and make it right at no charge. Your happiness is our priority — no questions asked.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq6" aria-expanded="false">Do I need to be present during the service?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq6-answer"><p>You don't have to be present! As long as we can access your vehicle and have a safe spot to work, you can go about your day. Many customers have us detail their car while they're at the office.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq7" aria-expanded="false">What payment methods do you accept?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq7-answer"><p>We accept UPI (GPay, PhonePe, Paytm), all major credit &amp; debit cards, net banking, and cash. Payment is collected after the service is complete and you're fully satisfied.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" id="faq8" aria-expanded="false">How often should I get my car detailed?<span class="faq-icon" aria-hidden="true">+</span></button>
+            <div class="faq-answer" id="faq8-answer"><p>For most vehicles, we recommend a full detail every 3–6 months. Given Ahmedabad's dust and heat, more frequent maintenance wash every 4–6 weeks is ideal to protect the paint in India's climate.</p></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ══════════ BOOKING ══════════ -->
-  <section class="booking-section" id="book">
+  <section class="section booking-section" id="book">
     <div class="container">
       <div class="booking-inner">
-        <!-- Left Side: Headline and Trust Badges -->
-        <div class="booking-left">
-          <h2 class="booking-title">Shine Now,<br>Pay Later</h2>
+        <div class="booking-left" data-reveal>
+          <div class="eyebrow"><span class="eyebrow-num">07</span>Booking</div>
+          <h2 class="booking-title">Shine now,<br>pay later.</h2>
           <div class="booking-trust-badges">
             <div class="trust-badge">
-              <span class="badge-icon-svg">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </span>
+              <span class="badge-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
               100% Satisfaction Guarantee
             </div>
             <div class="trust-badge">
-              <span class="badge-icon-svg">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </span>
-              We Come To You in Ahmedabad
+              <span class="badge-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              We come to you in Ahmedabad
             </div>
             <div class="trust-badge">
-              <span class="badge-icon-svg">
-                <svg viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </span>
+              <span class="badge-icon-svg"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
               500+ 5-Star Reviews
             </div>
             <div class="trust-badge">
-              <span class="badge-icon-svg">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" ry="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg>
-              </span>
-              UPI & Credit/Debit Cards Accepted
+              <span class="badge-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+              UPI &amp; Credit/Debit Cards Accepted
             </div>
           </div>
         </div>
 
-        <!-- Right Side: Multi-Step Form -->
-        <div class="booking-form-wrap">
-          <!-- Progress Bar Indicator -->
-          <div class="form-progress-bar">
-            <div class="form-progress-fill" id="progressFill" style="width: 33.3%;"></div>
-          </div>
+        <div class="booking-form-wrap" data-reveal>
+          <div class="form-progress-bar"><div class="form-progress-fill" id="progressFill" style="width: 33.3%;"></div></div>
 
           <form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)">
-            <!-- Price Estimate Indicator -->
             <div class="price-estimate-indicator">
-              <span class="estimate-label">Estimated Price Range:</span>
+              <span class="estimate-label">Estimated price</span>
               <span class="estimate-value" id="priceEstimate">₹999 – ₹19,999+</span>
             </div>
 
-            <!-- Step 1: Contact Info -->
             <div class="form-step active" data-step="1">
-              <h3 class="form-step-title">Step 1: Contact Info</h3>
+              <h3 class="form-step-title">Step 1 — Contact info</h3>
               <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="e.g. Rajesh" required>
+                <label for="firstName">First name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="e.g. Rajesh" required>
               </div>
               <div class="form-group">
-                <label for="phone">WhatsApp Number</label>
-                <input type="tel" id="phone" placeholder="e.g. 99797 87087" required>
+                <label for="phone">WhatsApp number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g. 99797 87087" required>
               </div>
-              <button type="button" class="form-btn-next btn-primary" onclick="nextStep(1)">
-                <span>Next Step →</span>
-              </button>
+              <button type="button" class="btn btn-primary form-btn-next" onclick="nextStep(1)">Next step <span class="btn-arrow">→</span></button>
             </div>
 
-            <!-- Step 2: Vehicle & Service -->
             <div class="form-step" data-step="2">
-              <h3 class="form-step-title">Step 2: Vehicle & Service</h3>
+              <h3 class="form-step-title">Step 2 — Vehicle &amp; service</h3>
               <div class="form-group">
-                <label for="vehicleType">Vehicle Type</label>
-                <select id="vehicleType" onchange="updateEstimates()" required>
-                  <option value="">Select Type</option>
+                <label for="vehicleType">Vehicle type</label>
+                <select id="vehicleType" name="vehicleType" onchange="updateEstimates()" required>
+                  <option value="">Select type</option>
                   <option value="Hatchback">Hatchback</option>
                   <option value="Sedan">Sedan</option>
                   <option value="SUV / MUV">SUV / MUV</option>
@@ -592,9 +566,9 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="service">Service Package</label>
-                <select id="service" onchange="updateEstimates()" required>
-                  <option value="">Select Package</option>
+                <label for="service">Service package</label>
+                <select id="service" name="service" onchange="updateEstimates()" required>
+                  <option value="">Select package</option>
                   <option value="Essential Clean">Essential Clean</option>
                   <option value="Premium Detail">Premium Detail</option>
                   <option value="Elite Detail">Elite Detail</option>
@@ -602,95 +576,56 @@
                 </select>
               </div>
               <div class="form-btn-group">
-                <button type="button" class="form-btn-prev btn-secondary" onclick="prevStep(2)">← Back</button>
-                <button type="button" class="form-btn-next btn-primary" onclick="nextStep(2)">Next Step →</button>
+                <button type="button" class="btn btn-ghost form-btn-prev" onclick="prevStep(2)">← Back</button>
+                <button type="button" class="btn btn-primary form-btn-next" onclick="nextStep(2)">Next step →</button>
               </div>
             </div>
 
-            <!-- Step 3: Address & Date -->
             <div class="form-step" data-step="3">
-              <h3 class="form-step-title">Step 3: Address & Date</h3>
+              <h3 class="form-step-title">Step 3 — Address &amp; date</h3>
               <div class="form-group">
-                <label for="address">Service Address (Ahmedabad)</label>
-                <input type="text" id="address" placeholder="e.g. Satellite, Prahlad Nagar" required>
+                <label for="address">Service address (Ahmedabad)</label>
+                <input type="text" id="address" name="address" placeholder="e.g. Satellite, Prahlad Nagar" required>
               </div>
               <div class="form-group">
-                <label for="preferredDate">Preferred Date</label>
-                <input type="date" id="preferredDate" required>
+                <label for="preferredDate">Preferred date</label>
+                <input type="date" id="preferredDate" name="preferredDate" required>
               </div>
               <div class="form-btn-group">
-                <button type="button" class="form-btn-prev btn-secondary" onclick="prevStep(3)">← Back</button>
-                <button type="submit" class="form-submit-btn btn-primary" id="submitBtn">
-                  <span>Submit Booking →</span>
-                </button>
+                <button type="button" class="btn btn-ghost form-btn-prev" onclick="prevStep(3)">← Back</button>
+                <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn"><span>Submit booking →</span></button>
               </div>
             </div>
           </form>
 
-          <!-- Success Screen -->
           <div class="form-success" id="formSuccess" style="display:none;">
             <div class="success-icon">
-              <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 20px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 18px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <h3>Booking Submitted!</h3>
-            <p>We'll WhatsApp you within 30 minutes to confirm your appointment. Check your messages!</p>
+            <h3>Booking submitted.</h3>
+            <p>We'll WhatsApp you within 30 minutes to confirm your appointment. Check your messages.</p>
           </div>
 
-          <!-- WhatsApp Quick Book Option -->
           <div class="whatsapp-quick-book">
             <span>Rather chat?</span>
-            <a href="https://wa.me/919979787087?text=Hi%20DC,%20I'd%20like%20to%20book%20a%20detailing%20service%20for%20my%20car." target="_blank">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; position: relative; top: -1px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm5.835-3.266l.33.196c1.761 1.045 3.8 1.597 5.845 1.598 5.542 0 10.054-4.51 10.057-10.054.001-2.686-1.043-5.212-2.939-7.11C17.23 3.468 14.7 2.423 12.01 2.423c-5.546 0-10.06 4.512-10.063 10.058-.001 2.13.56 4.204 1.624 6.009l.214.364-1.07 3.906 4.026-1.056zM17.86 14.73c-.32-.16-1.89-.93-2.185-1.04-.294-.11-.51-.16-.723.16-.214.32-.83 1.04-1.016 1.25-.187.21-.373.24-.693.08-1.527-.765-2.658-1.332-3.712-3.138-.278-.477.278-.443.796-1.477.087-.174.043-.327-.022-.457-.065-.13-.51-1.226-.7-1.685-.185-.443-.372-.382-.51-.389-.13-.007-.279-.008-.428-.008-.15 0-.393.056-.6.28-.206.223-.788.77-.788 1.877 0 1.107.805 2.177.917 2.33 1.043 1.417 2.11 2.235 3.398 2.72.784.296 1.428.375 1.97.294.606-.09 1.89-.77 2.155-1.48.266-.707.266-1.312.187-1.44-.08-.127-.294-.207-.614-.367z"/></svg>Rather chat? Message us on WhatsApp
-            </a>
+            <a href="https://wa.me/919979787087?text=Hi%20DC,%20I'd%20like%20to%20book%20a%20detailing%20service%20for%20my%20car." target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="vertical-align:middle;margin-right:5px;position:relative;top:-1px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm5.835-3.266l.33.196c1.761 1.045 3.8 1.597 5.845 1.598 5.542 0 10.054-4.51 10.057-10.054.001-2.686-1.043-5.212-2.939-7.11C17.23 3.468 14.7 2.423 12.01 2.423c-5.546 0-10.06 4.512-10.063 10.058-.001 2.13.56 4.204 1.624 6.009l.214.364-1.07 3.906 4.026-1.056zM17.86 14.73c-.32-.16-1.89-.93-2.185-1.04-.294-.11-.51-.16-.723.16-.214.32-.83 1.04-1.016 1.25-.187.21-.373.24-.693.08-1.527-.765-2.658-1.332-3.712-3.138-.278-.477.278-.443.796-1.477.087-.174.043-.327-.022-.457-.065-.13-.51-1.226-.7-1.685-.185-.443-.372-.382-.51-.389-.13-.007-.279-.008-.428-.008-.15 0-.393.056-.6.28-.206.223-.788.77-.788 1.877 0 1.107.805 2.177.917 2.33 1.043 1.417 2.11 2.235 3.398 2.72.784.296 1.428.375 1.97.294.606-.09 1.89-.77 2.155-1.48.266-.707.266-1.312.187-1.44-.08-.127-.294-.207-.614-.367z"/></svg>Message us on WhatsApp</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ══════════ HOW IT WORKS ══════════ -->
-  <section class="how-it-works">
-    <div class="container">
-      <div class="section-eyebrow">SIMPLE PROCESS</div>
-      <h2 class="section-title">How DC Works</h2>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">01</div>
-          <h3>Book Online</h3>
-          <p>Fill our quick form or WhatsApp us. Choose your package, date, and Ahmedabad address in minutes.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step-item">
-          <div class="step-number">02</div>
-          <h3>We Confirm</h3>
-          <p>Our team confirms via WhatsApp and sends a reminder. We'll be there on time, guaranteed.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step-item">
-          <div class="step-number">03</div>
-          <h3>We Detail</h3>
-          <p>Our certified detailers arrive with all supplies. You relax while we make your car shine.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step-item">
-          <div class="step-number">04</div>
-          <h3>Enjoy!</h3>
-          <p>Inspect your freshly detailed car. 100% happy? Pay via UPI/cash and enjoy. Not happy? We make it right.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
-    <div class="footer-logo-large"><img src="assets/logo.png?v=2" alt="DC Logo"></div>
+    <div class="footer-logo-large" id="footerLogo"><img src="assets/logo.png?v=2" alt="DC Logo"></div>
     <div class="container">
       <div class="footer-grid">
-        <!-- Services Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">Services</h4>
           <ul>
-            <li><a href="#services">Exterior Wash & Wax</a></li>
+            <li><a href="#services">Exterior Wash &amp; Wax</a></li>
             <li><a href="#services">Interior Detailing</a></li>
             <li><a href="#services">Paint Correction</a></li>
             <li><a href="#services">Ceramic Coating</a></li>
@@ -698,54 +633,47 @@
             <li><a href="#services">Headlight Restoration</a></li>
           </ul>
         </div>
-        <!-- Areas Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">Areas</h4>
           <ul>
-            <li><a href="#">Satellite, Ahmedabad</a></li>
-            <li><a href="#">Prahlad Nagar</a></li>
-            <li><a href="#">Bopal & South Ahmedabad</a></li>
-            <li><a href="#">Thaltej & SG Highway</a></li>
-            <li><a href="#">Science City & Sola</a></li>
-            <li><a href="#">Navrangpura & CG Road</a></li>
+            <li><span>Satellite, Ahmedabad</span></li>
+            <li><span>Prahlad Nagar</span></li>
+            <li><span>Bopal &amp; South Ahmedabad</span></li>
+            <li><span>Thaltej &amp; SG Highway</span></li>
+            <li><span>Science City &amp; Sola</span></li>
+            <li><span>Navrangpura &amp; CG Road</span></li>
           </ul>
         </div>
-        <!-- Contact Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">Contact</h4>
           <ul>
             <li><a href="tel:+919979787087">+91 99797 87087</a></li>
-            <li><a href="https://wa.me/qr/KQJFSZ2WY5FSO1">WhatsApp Us</a></li>
+            <li><a href="https://wa.me/qr/KQJFSZ2WY5FSO1" target="_blank" rel="noopener">WhatsApp Us</a></li>
             <li><a href="mailto:divyarajc2@gmail.com">divyarajc2@gmail.com</a></li>
             <li><span>Ahmedabad, Gujarat</span></li>
           </ul>
         </div>
-        <!-- Legal Column -->
         <div class="footer-col">
           <h4 class="footer-col-title">Legal</h4>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Booking Terms</a></li>
-            <li><a href="#">Refund Policy</a></li>
+            <li><span>Privacy Policy</span></li>
+            <li><span>Terms of Service</span></li>
+            <li><span>Booking Terms</span></li>
+            <li><span>Refund Policy</span></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Footer Bottom Bar -->
     <div class="footer-bottom">
       <div class="container">
         <div class="footer-bottom-inner">
-          <p class="copyright-text">© <span id="copyright-year">2026</span> DC. All rights reserved. <span class="admin-demo-wrap">| <a href="admin.html" target="_blank" class="admin-demo-link">View Admin Demo</a> <span class="admin-demo-note">(Part of the full-stack demonstration)</span></span></p>
-          <div class="footer-social-monochrome">
-            <a href="https://www.instagram.com/divyaraj.creates" target="_blank" aria-label="Instagram">
+          <p class="copyright-text">© <span id="copyright-year">2026</span> DC. All rights reserved. <span class="admin-demo-wrap">| <a href="admin.html" target="_blank" rel="noopener" class="admin-demo-link">View admin demo</a> <span class="admin-demo-note">(full-stack demonstration)</span></span></p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/divyaraj.creates" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="https://www.instagram.com/divyaraj.creates" target="_blank" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="https://wa.me/qr/KQJFSZ2WY5FSO1" target="_blank" aria-label="WhatsApp">
+            <a href="https://wa.me/qr/KQJFSZ2WY5FSO1" target="_blank" rel="noopener" aria-label="WhatsApp">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
           </div>
@@ -754,32 +682,30 @@
     </div>
   </footer>
 
-
-
   <!-- Mobile Sticky Bar -->
   <div class="sticky-book-bar">
     <a href="tel:+919979787087" class="sticky-call">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: var(--text-secondary);"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
       Call
     </a>
-    <a href="#book" class="sticky-book">Book Free Quote</a>
+    <a href="#book" class="sticky-book">Book free quote</a>
   </div>
 
   <!-- Portfolio Demo Modal -->
   <div id="demoModal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modalTitle">
     <div class="modal-content">
       <button class="modal-close" id="closeDemoModal" aria-label="Close modal">&times;</button>
-      <h3 class="modal-heading" id="modalTitle">This is a Demo</h3>
+      <h3 class="modal-heading" id="modalTitle">This is a demo.</h3>
       <p class="modal-body">DC is an imaginary brand created for portfolio demonstration. Bookings cannot be completed. The admin dashboard you see is part of the showcase — a full booking flow from customer form to admin panel.</p>
       <div class="modal-divider"></div>
       <h4 class="modal-subheading">Want a website like this?</h4>
       <div class="modal-actions">
-        <a href="https://divyaraj-exhibit.vercel.app/" target="_blank" class="modal-btn-secondary">View Portfolio</a>
-        <a href="mailto:divyarajc2@gmail.com" class="modal-btn-primary">Get in Touch</a>
+        <a href="https://divyaraj-exhibit.vercel.app/" target="_blank" rel="noopener" class="modal-btn-secondary">View portfolio</a>
+        <a href="mailto:divyarajc2@gmail.com" class="modal-btn-primary">Get in touch</a>
       </div>
     </div>
   </div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
