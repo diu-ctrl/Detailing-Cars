@@ -1,0 +1,9 @@
+# DC — Premium Car Detailing Ahmedabad
+# https://dc-by-divyaraj.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+
+Sitemap: https://dc-by-divyaraj.vercel.app/sitemap.xml
