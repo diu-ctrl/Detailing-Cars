@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="stylesheet" href="style.css?v=34">
   <link rel="preload" as="image" href="assets/hero_dc.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -536,29 +536,39 @@
 
             <div class="form-step" data-step="2">
               <h3 class="form-step-title">Step 2 — Vehicle &amp; service</h3>
-              <div class="form-group">
-                <label for="vehicleType">Vehicle type</label>
-                <select id="vehicleType" name="vehicleType" onchange="updateEstimates()" required>
-                  <option value="">Select type</option>
-                  <option value="Hatchback">Hatchback</option>
-                  <option value="Sedan">Sedan</option>
-                  <option value="SUV / MUV">SUV / MUV</option>
-                  <option value="Luxury / Exotic">Luxury / Exotic</option>
-                  <option value="Truck / Pickup">Truck / Pickup</option>
-                  <option value="Van / Traveller">Van / Traveller</option>
-                  <option value="Commercial Fleet">Commercial Fleet</option>
-                </select>
+              <div id="vehicleBlocks">
+                <div class="vehicle-block" data-block="0">
+                  <div class="vehicle-block-header">
+                    <span class="vehicle-block-title">Vehicle 1</span>
+                    <button type="button" class="veh-remove" aria-label="Remove this vehicle" onclick="removeVehicleBlock(this)" style="display:none;">✕</button>
+                  </div>
+                  <div class="form-group">
+                    <label>Vehicle type</label>
+                    <select class="veh-type" name="vehicleType" onchange="updateEstimates()" required>
+                      <option value="">Select type</option>
+                      <option value="Hatchback">Hatchback</option>
+                      <option value="Sedan">Sedan</option>
+                      <option value="SUV / MUV">SUV / MUV</option>
+                      <option value="Luxury / Exotic">Luxury / Exotic</option>
+                      <option value="Truck / Pickup">Truck / Pickup</option>
+                      <option value="Van / Traveller">Van / Traveller</option>
+                      <option value="Commercial Fleet">Commercial Fleet</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Service package</label>
+                    <select class="veh-service" name="service" onchange="updateEstimates()" required>
+                      <option value="">Select package</option>
+                      <option value="Essential Clean">Essential Clean</option>
+                      <option value="Premium Detail">Premium Detail</option>
+                      <option value="Elite Detail">Elite Detail</option>
+                      <option value="Ceramic Pro">Ceramic Pro</option>
+                    </select>
+                  </div>
+                  <div class="veh-est"></div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="service">Service package</label>
-                <select id="service" name="service" onchange="updateEstimates()" required>
-                  <option value="">Select package</option>
-                  <option value="Essential Clean">Essential Clean</option>
-                  <option value="Premium Detail">Premium Detail</option>
-                  <option value="Elite Detail">Elite Detail</option>
-                  <option value="Ceramic Pro">Ceramic Pro</option>
-                </select>
-              </div>
+              <button type="button" class="btn btn-ghost" id="addVehicleBtn" onclick="addVehicleBlock()">+ Add another vehicle (max 10)</button>
               <div class="form-btn-group">
                 <button type="button" class="btn btn-ghost form-btn-prev" onclick="prevStep(2)">← Back</button>
                 <button type="button" class="btn btn-primary form-btn-next" onclick="nextStep(2)">Next step →</button>
@@ -695,6 +705,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

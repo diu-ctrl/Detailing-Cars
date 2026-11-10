@@ -506,6 +506,15 @@ body::after {
   line-height: 1.5;
   margin-top: 14px;
 }
+
+/* --- P5 F11: multi-vehicle blocks --- */
+.vehicle-block { border: 1px solid var(--line); border-radius: var(--r-2); padding: 14px 14px 6px; margin-bottom: 12px; position: relative; background: var(--bg-1); }
+.vehicle-block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.vehicle-block-title { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.veh-remove { background: none; border: none; color: var(--ink-3); cursor: pointer; font-size: 16px; line-height: 1; padding: 2px 6px; border-radius: var(--r-1); }
+.veh-remove:hover { color: #fca5a5; }
+.veh-est { font-size: 12px; color: var(--ink-2); margin: -4px 0 10px; min-height: 14px; }
+#addVehicleBtn { width: 100%; margin-bottom: 14px; border-style: dashed; }
 .form-btn-group { display: flex; gap: 12px; margin-top: 24px; }
 .form-btn-group .btn { flex: 1; }
 .booking-form-wrap .btn-primary, .form-submit-btn { width: 100%; }

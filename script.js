@@ -132,24 +132,63 @@ const pricingData = {
   }
 };
 
+// ─── P5 F11: Multi-vehicle blocks ────────────────────────────────────────────
+const MAX_VEHICLES = 10;
+const vehicleBlocksEl = document.getElementById('vehicleBlocks');
+
+function blockVehicles() {
+  return Array.from(document.querySelectorAll('#vehicleBlocks .vehicle-block'));
+}
+
+function renumberBlocks() {
+  const blocks = blockVehicles();
+  blocks.forEach((b, i) => {
+    b.dataset.block = i;
+    b.querySelector('.vehicle-block-title').textContent = 'Vehicle ' + (i + 1);
+    b.querySelector('.veh-remove').style.display = blocks.length > 1 ? '' : 'none';
+  });
+  const addBtn = document.getElementById('addVehicleBtn');
+  if (addBtn) addBtn.style.display = blocks.length >= MAX_VEHICLES ? 'none' : '';
+}
+
+function addVehicleBlock() {
+  if (blockVehicles().length >= MAX_VEHICLES) return;
+  const clone = blockVehicles()[0].cloneNode(true);
+  clone.querySelectorAll('select').forEach(s => { s.value = ''; });
+  const est = clone.querySelector('.veh-est');
+  if (est) est.textContent = '';
+  vehicleBlocksEl.appendChild(clone);
+  renumberBlocks();
+  updateEstimates();
+}
+
+function removeVehicleBlock(btn) {
+  if (blockVehicles().length <= 1) return;
+  btn.closest('.vehicle-block').remove();
+  renumberBlocks();
+  updateEstimates();
+}
+
 function updateEstimates() {
-  const vehicleType = document.getElementById('vehicleType').value;
-  const service = document.getElementById('service').value;
   const priceEstimateEl = document.getElementById('priceEstimate');
   if (!priceEstimateEl) return;
-
-  if (service && vehicleType) {
-    const price = pricingData[service] && pricingData[service][vehicleType];
-    priceEstimateEl.textContent = price ? ('₹' + price.toLocaleString('en-IN')) : '₹999 – ₹19,999';
-  } else if (service) {
-    const prices = Object.values(pricingData[service]);
-    priceEstimateEl.textContent = '₹' + Math.min(...prices).toLocaleString('en-IN') + ' – ₹' + Math.max(...prices).toLocaleString('en-IN');
-  } else if (vehicleType) {
-    const prices = Object.keys(pricingData).map(s => pricingData[s][vehicleType]).filter(Boolean);
-    priceEstimateEl.textContent = '₹' + Math.min(...prices).toLocaleString('en-IN') + ' – ₹' + Math.max(...prices).toLocaleString('en-IN') + '+';
-  } else {
-    priceEstimateEl.textContent = '₹999 – ₹19,999+';
-  }
+  let total = 0, complete = 0;
+  blockVehicles().forEach(b => {
+    const vt = b.querySelector('.veh-type').value;
+    const sv = b.querySelector('.veh-service').value;
+    const estEl = b.querySelector('.veh-est');
+    if (vt && sv && pricingData[sv] && pricingData[sv][vt]) {
+      const p = pricingData[sv][vt];
+      estEl.textContent = '₹' + p.toLocaleString('en-IN');
+      total += p;
+      complete++;
+    } else {
+      estEl.textContent = '';
+    }
+  });
+  priceEstimateEl.textContent = complete > 0
+    ? (complete === blockVehicles().length ? 'Total: ₹' + total.toLocaleString('en-IN') : 'So far: ₹' + total.toLocaleString('en-IN'))
+    : '₹999 – ₹19,999+';
 }
 
 function setProgress(stepNum) {
@@ -203,14 +242,19 @@ function handleBooking(e) {
   }
 
   // F10: sanitize + length caps
+  const vehicles = blockVehicles().map(b => ({
+    vehicleType: b.querySelector('.veh-type').value,
+    service: b.querySelector('.veh-service').value
+  }));
   const newAppt = {
     id: 'APT-' + Date.now(),
     firstName: sanitizeText(document.getElementById('firstName').value, 60),
     lastName: '',
     phone: sanitizeText(document.getElementById('phone').value, 20),
     email: sanitizeText(document.getElementById('email').value, 120),
-    vehicleType: document.getElementById('vehicleType').value,
-    service: document.getElementById('service').value,
+    vehicleType: vehicles[0].vehicleType,
+    service: vehicles[0].service,
+    vehicles: vehicles,
     address: sanitizeText(document.getElementById('address').value, 240),
     preferredDate: document.getElementById('preferredDate').value,
     notes: sanitizeText(document.getElementById('notes').value, 500),
@@ -218,11 +262,12 @@ function handleBooking(e) {
     createdAt: new Date().toISOString()
   };
 
-  // F10: whitelist the select values (never trust the DOM)
+  // F11: whitelist every vehicle's select values (never trust the DOM)
   const validServices = ['Essential Clean', 'Premium Detail', 'Elite Detail', 'Ceramic Pro'];
   const validVehicles = ['Hatchback', 'Sedan', 'SUV / MUV', 'Luxury / Exotic', 'Truck / Pickup', 'Van / Traveller', 'Commercial Fleet'];
-  if (!validServices.includes(newAppt.service) || !validVehicles.includes(newAppt.vehicleType)) {
-    showFormError('Please choose a valid service and vehicle type.');
+  const badVeh = vehicles.find(v => !validServices.includes(v.service) || !validVehicles.includes(v.vehicleType));
+  if (badVeh) {
+    showFormError('Please choose a valid service and vehicle type for every vehicle.');
     return;
   }
 

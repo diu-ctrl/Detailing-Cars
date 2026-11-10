@@ -281,6 +281,7 @@
       padding: 3px 9px; font-size: 0.7rem; font-weight: 500;
       color: var(--text-secondary); white-space: nowrap;
     }
+    .multi-veh-chip { display:inline-block; margin-left:6px; padding:1px 7px; border-radius:999px; background:rgba(252,223,0,0.15); color:#fcdf00; font-size:11px; font-weight:700; cursor:help; vertical-align:middle; }
     .service-tag {
       background: rgba(252, 223, 0, 0.07); border: 1px solid rgba(252, 223, 0, 0.18);
       color: var(--accent); padding: 3px 9px; font-size: 0.7rem;
@@ -765,7 +766,7 @@
         if (a.status === 'Pending') pending++;
         if (a.status === 'Confirmed') confirmed++;
         if (a.status === 'Completed') completed++;
-        if (a.status === 'Confirmed' || a.status === 'Completed') revenue += (priceMap[a.service] || 999);
+        if (a.status === 'Confirmed' || a.status === 'Completed') revenue += a.estimateTotal || (priceMap[a.service] || 999);
       });
       document.getElementById('countTotal').textContent = total;
       document.getElementById('countPending').textContent = pending;
@@ -816,6 +817,12 @@
       });
     }
 
+    function vehChip(appt) {
+      if (!appt.vehicles || appt.vehicles.length < 2) return '';
+      const list = appt.vehicles.map(v => `${v.vehicleType} · ${v.service}`).join(' | ');
+      return ` <span class="multi-veh-chip" title="${list}">+${appt.vehicles.length - 1}</span>`;
+    }
+
     function renderTable(newIds = []) {
       const tbody = document.getElementById('apptTableBody');
       const mobileCards = document.getElementById('mobileCards');
@@ -845,7 +852,7 @@
             </div>
           </td>
           <td><strong>${dateStr}</strong></td>
-          <td><span class="vehicle-tag">${appt.vehicleType||''}</span></td>
+          <td><span class="vehicle-tag">${appt.vehicleType||''}</span>${vehChip(appt)}</td>
           <td><span class="service-tag">${appt.service||''}</span></td>
           <td><span style="display:inline-block;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${appt.address||''}">${appt.address||''}</span></td>
           <td><span class="status-badge ${statusClass}">${appt.status||'Pending'}</span></td>
@@ -880,6 +887,7 @@
           <div class="mobile-card-tags">
             <span class="vehicle-tag">${appt.vehicleType||''}</span>
             <span class="service-tag">${appt.service||''}</span>
+            ${vehChip(appt)}
           </div>
           <div class="mobile-card-row">
             <span class="mobile-card-date">${dateStr}</span>
