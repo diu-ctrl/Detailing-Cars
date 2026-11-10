@@ -255,7 +255,7 @@
           <a href="#book" class="btn btn-ghost package-btn">Book Ceramic</a>
         </div>
       </div>
-      <p class="package-note">*Final price depends on vehicle size and condition.</p>
+      <p class="package-note">*Final price depends on vehicle size and condition. Fleet pricing is per vehicle.</p>
 
       <div class="addons" data-reveal>
         <div class="addons-label">Popular add-ons</div>
@@ -285,7 +285,7 @@
           <p class="gift-desc">The Essential Clean — hand wash, interior vacuum, windows and tyre shine.</p>
           <div class="gift-code">DC-GIFT-999</div>
           <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
-          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
+          <a href="https://wa.me/919979787087?text=Hi%20DC!%20I%27d%20like%20to%20gift%20the%20%E2%82%B9999%20gift%20card%20(code%20DC-GIFT-999)." target="_blank" rel="noopener" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
         <div class="gift-card" data-reveal>
           <div class="gift-label">Gift card</div>
@@ -293,7 +293,7 @@
           <p class="gift-desc">The Premium Detail — steam cleaning, leather care, carnauba wax and more.</p>
           <div class="gift-code">DC-GIFT-2499</div>
           <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
-          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
+          <a href="https://wa.me/919979787087?text=Hi%20DC!%20I%27d%20like%20to%20gift%20the%20%E2%82%B92,499%20gift%20card%20(code%20DC-GIFT-2499)." target="_blank" rel="noopener" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
         <div class="gift-card" data-reveal>
           <div class="gift-label">Gift card</div>
@@ -301,7 +301,7 @@
           <p class="gift-desc">The Elite Detail — paint correction, sealant, headlight restoration, the works.</p>
           <div class="gift-code">DC-GIFT-4499</div>
           <p class="gift-fine">Delivered on WhatsApp within minutes. Valid 6 months at any Ahmedabad address.</p>
-          <a href="#book" class="btn btn-ghost gift-btn">Gift this</a>
+          <a href="https://wa.me/919979787087?text=Hi%20DC!%20I%27d%20like%20to%20gift%20the%20%E2%82%B94,499%20gift%20card%20(code%20DC-GIFT-4499)." target="_blank" rel="noopener" class="btn btn-ghost gift-btn">Gift this</a>
         </div>
       </div>
     </div>
@@ -510,6 +510,10 @@
                 <label for="phone">WhatsApp number</label>
                 <input type="tel" id="phone" name="phone" placeholder="e.g. 99797 87087" required>
               </div>
+              <div class="form-group">
+                <label for="email">Email (optional)</label>
+                <input type="email" id="email" name="email" placeholder="e.g. name@gmail.com">
+              </div>
               <button type="button" class="btn btn-primary form-btn-next" onclick="nextStep(1)">Next step <span class="btn-arrow">→</span></button>
             </div>
 
@@ -523,6 +527,9 @@
                   <option value="Sedan">Sedan</option>
                   <option value="SUV / MUV">SUV / MUV</option>
                   <option value="Luxury / Exotic">Luxury / Exotic</option>
+                  <option value="Truck / Pickup">Truck / Pickup</option>
+                  <option value="Van / Traveller">Van / Traveller</option>
+                  <option value="Commercial Fleet">Commercial Fleet</option>
                 </select>
               </div>
               <div class="form-group">
@@ -550,6 +557,10 @@
               <div class="form-group">
                 <label for="preferredDate">Preferred date</label>
                 <input type="date" id="preferredDate" name="preferredDate" required>
+              </div>
+              <div class="form-group">
+                <label for="notes">Notes (optional)</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Gate code, pet at home, preferred time window…"></textarea>
               </div>
               <div class="form-btn-group">
                 <button type="button" class="btn btn-ghost form-btn-prev" onclick="prevStep(3)">← Back</button>

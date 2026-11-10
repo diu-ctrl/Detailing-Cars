@@ -86,10 +86,22 @@ if (heroSectionEl) {
 
 // ─── Multi-Step Form + Price Estimation ──────────────────────────────────────
 const pricingData = {
-  'Essential Clean': { 'Hatchback': 999,  'Sedan': 1199,  'SUV / MUV': 1299,  'Luxury / Exotic': 1599 },
-  'Premium Detail':  { 'Hatchback': 2499, 'Sedan': 2799,  'SUV / MUV': 3199,  'Luxury / Exotic': 3999 },
-  'Elite Detail':    { 'Hatchback': 4499, 'Sedan': 4999,  'SUV / MUV': 5499,  'Luxury / Exotic': 6499 },
-  'Ceramic Pro':     { 'Hatchback': 12999,'Sedan': 13999, 'SUV / MUV': 15999, 'Luxury / Exotic': 19999 }
+  'Essential Clean': {
+    'Hatchback': 999,  'Sedan': 1199,  'SUV / MUV': 1299,  'Luxury / Exotic': 1599,
+    'Truck / Pickup': 1499, 'Van / Traveller': 1699, 'Commercial Fleet': 899
+  },
+  'Premium Detail':  {
+    'Hatchback': 2499, 'Sedan': 2799,  'SUV / MUV': 3199,  'Luxury / Exotic': 3999,
+    'Truck / Pickup': 3499, 'Van / Traveller': 3799, 'Commercial Fleet': 2199
+  },
+  'Elite Detail':    {
+    'Hatchback': 4499, 'Sedan': 4999,  'SUV / MUV': 5499,  'Luxury / Exotic': 6499,
+    'Truck / Pickup': 6499, 'Van / Traveller': 6999, 'Commercial Fleet': 3999
+  },
+  'Ceramic Pro':     {
+    'Hatchback': 12999,'Sedan': 13999, 'SUV / MUV': 15999, 'Luxury / Exotic': 19999,
+    'Truck / Pickup': 17999,'Van / Traveller': 19999,'Commercial Fleet': 11499
+  }
 };
 
 function updateEstimates() {
@@ -125,6 +137,11 @@ function nextStep(currentStep) {
     if (!input.value.trim()) { input.reportValidity(); valid = false; }
   });
   if (!valid) return;
+  const emailInput = document.getElementById('email');
+  if (emailInput && emailInput.value.trim() && !emailInput.validity.valid) {
+    emailInput.reportValidity();
+    return;
+  }
   const nextEl = document.querySelector('.form-step[data-step="' + (currentStep + 1) + '"]');
   if (nextEl) {
     stepEl.classList.remove('active');
@@ -155,12 +172,12 @@ function handleBooking(e) {
     firstName: document.getElementById('firstName').value,
     lastName: '',
     phone: document.getElementById('phone').value,
-    email: '',
+    email: document.getElementById('email').value.trim(),
     vehicleType: document.getElementById('vehicleType').value,
     service: document.getElementById('service').value,
     address: document.getElementById('address').value,
     preferredDate: document.getElementById('preferredDate').value,
-    notes: '',
+    notes: document.getElementById('notes').value.trim(),
     status: 'Pending',
     createdAt: new Date().toISOString()
   };
