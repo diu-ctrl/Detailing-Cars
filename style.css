@@ -485,6 +485,27 @@ body::after {
 .form-group input::placeholder, .form-group textarea::placeholder { color: var(--ink-3); }
 .form-group select option { background: var(--bg-2); color: var(--ink); }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+
+/* --- P4 F10: bot trap + inline form error --- */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+.form-error {
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #fca5a5;
+  border-radius: var(--r-1);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
 .form-btn-group { display: flex; gap: 12px; margin-top: 24px; }
 .form-btn-group .btn { flex: 1; }
 .booking-form-wrap .btn-primary, .form-submit-btn { width: 100%; }

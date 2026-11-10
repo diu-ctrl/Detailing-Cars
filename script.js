@@ -2,7 +2,7 @@
    DC — script.js (P1 refinement)
    Booking flow fixed: anchors scroll to the form,
    demo modal appears ONLY after successful submit.
-   Data layer unchanged (kvdb + admin contract).
+   Data layer: POST /api/bookings (server-side kvdb write) + localStorage fallback.
    ============================================ */
 
 // JS gate for reveal animations (no-JS = content visible)
@@ -85,6 +85,34 @@ if (heroSectionEl) {
 }
 
 // ─── Multi-Step Form + Price Estimation ──────────────────────────────────────
+
+// ─── P4 F10: Hardening constants + helpers ──────────────────────────────────
+const FORM_MIN_FILL_MS = 3000;
+const formOpenedAt = Date.now();
+const BOOKING_API = '/api/bookings';
+
+function sanitizeText(value, maxLen) {
+  return String(value == null ? '' : value)
+    .replace(/[<>`]/g, '')
+    .replace(/javascript:/gi, '')
+    .trim()
+    .slice(0, maxLen);
+}
+
+function showFormError(msg) {
+  const el = document.getElementById('formError');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(() => { el.style.display = 'none'; }, 8000);
+}
+
+function isBotSubmission() {
+  const hp = document.getElementById('company');
+  if (hp && hp.value.trim() !== '') return true;
+  return Date.now() - formOpenedAt < FORM_MIN_FILL_MS;
+}
 const pricingData = {
   'Essential Clean': {
     'Hatchback': 999,  'Sedan': 1199,  'SUV / MUV': 1299,  'Luxury / Exotic': 1599,
@@ -166,40 +194,102 @@ function handleBooking(e) {
   const btn = document.getElementById('submitBtn');
   const form = document.getElementById('bookingForm');
   const success = document.getElementById('formSuccess');
+  const btnOriginal = btn.innerHTML;
 
+  // F10: silent bot rejection (honeypot + time-trap) — fake success, no write
+  if (isBotSubmission()) {
+    showSuccessState();
+    return;
+  }
+
+  // F10: sanitize + length caps
   const newAppt = {
     id: 'APT-' + Date.now(),
-    firstName: document.getElementById('firstName').value,
+    firstName: sanitizeText(document.getElementById('firstName').value, 60),
     lastName: '',
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value.trim(),
+    phone: sanitizeText(document.getElementById('phone').value, 20),
+    email: sanitizeText(document.getElementById('email').value, 120),
     vehicleType: document.getElementById('vehicleType').value,
     service: document.getElementById('service').value,
-    address: document.getElementById('address').value,
+    address: sanitizeText(document.getElementById('address').value, 240),
     preferredDate: document.getElementById('preferredDate').value,
-    notes: document.getElementById('notes').value.trim(),
+    notes: sanitizeText(document.getElementById('notes').value, 500),
     status: 'Pending',
     createdAt: new Date().toISOString()
   };
+
+  // F10: whitelist the select values (never trust the DOM)
+  const validServices = ['Essential Clean', 'Premium Detail', 'Elite Detail', 'Ceramic Pro'];
+  const validVehicles = ['Hatchback', 'Sedan', 'SUV / MUV', 'Luxury / Exotic', 'Truck / Pickup', 'Van / Traveller', 'Commercial Fleet'];
+  if (!validServices.includes(newAppt.service) || !validVehicles.includes(newAppt.vehicleType)) {
+    showFormError('Please choose a valid service and vehicle type.');
+    return;
+  }
+
+  // F10: Indian mobile format
+  if (!/^(\+?91[\s\-]?|0)?[6-9]\d{9}$/.test(newAppt.phone.replace(/[\s\-()]/g, ''))) {
+    showFormError('Please enter a valid Indian mobile number (e.g. 98765 43210).');
+    return;
+  }
+
+  // F10: duplicate suppression (same phone + same date)
+  const phoneDigits = newAppt.phone.replace(/\D/g, '').slice(-10);
+  const existing = JSON.parse(localStorage.getItem('appointments') || '[]');
+  const isDuplicate = existing.some(a =>
+    (a.phone || '').replace(/\D/g, '').slice(-10) === phoneDigits &&
+    a.preferredDate === newAppt.preferredDate
+  );
+  if (isDuplicate) {
+    showFormError('A booking with this phone number and date already exists. Call us if you need to change it.');
+    return;
+  }
+
+  // F10: client rate limit — max 3 bookings per hour per device
+  const now = Date.now();
+  const log = JSON.parse(localStorage.getItem('dc_booking_log') || '[]').filter(t => now - t < 3600000);
+  if (log.length >= 3) {
+    showFormError('Too many bookings from this device in the last hour. Please try again later or WhatsApp us.');
+    return;
+  }
+
+  // F10: stale-session guard — a tab left open >24h counts as human
+  const effectiveOpenedAt = (Date.now() - formOpenedAt > 86400000) ? (Date.now() - 60000) : formOpenedAt;
 
   btn.innerHTML = '<span>Sending…</span>';
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  const dbBaseUrl = 'https://kvdb.io/GkHk1msDTVQ5uiHtMJStMn';
-  fetch(dbBaseUrl + '/appt_' + newAppt.id, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newAppt)
-  })
-    .then(res => { if (!res.ok) throw new Error('Write failed'); })
-    .catch(() => { /* local fallback keeps the demo flow alive offline */ })
-    .finally(() => {
-      const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
-      appts.unshift(newAppt);
-      localStorage.setItem('appointments', JSON.stringify(appts));
-      showSuccessState();
-    });
+  (async () => {
+    try {
+      const res = await fetch(BOOKING_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...newAppt, formOpenedAt: effectiveOpenedAt })
+      });
+      let data = {};
+      try { data = await res.json(); } catch (_) {}
+      if (!res.ok) {
+        if (res.status === 400 || res.status === 403 || res.status === 429) {
+          showFormError(data.error || 'Please check your details and try again.');
+          btn.innerHTML = btnOriginal;
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          return;
+        }
+        throw new Error('upstream ' + res.status);
+      }
+    } catch (err) {
+      // network / 5xx → graceful local fallback keeps the demo flow alive
+    }
+
+    log.push(now);
+    localStorage.setItem('dc_booking_log', JSON.stringify(log));
+
+    const appts = JSON.parse(localStorage.getItem('appointments') || '[]');
+    appts.unshift(newAppt);
+    localStorage.setItem('appointments', JSON.stringify(appts));
+    showSuccessState();
+  })();
 
   function showSuccessState() {
     setTimeout(() => {
@@ -288,13 +378,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ─── Hidden Admin Portal Triggers (kept from v1) ─────────────────────────────
 function promptAdminLogin() {
-  const password = prompt('Enter Admin Password:');
-  if (password === 'admin123') {
-    sessionStorage.setItem('adminSession', 'active');
-    window.location.href = 'admin.html';
-  } else if (password !== null) {
-    alert('Incorrect password!');
-  }
+  window.location.href = 'admin.html';
 }
 const footerLogoEl = document.getElementById('footerLogo');
 if (footerLogoEl) {

@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=33">
   <link rel="preload" as="image" href="assets/hero_dc.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -529,6 +529,7 @@
               <div class="form-group">
                 <label for="email">Email (optional)</label>
                 <input type="email" id="email" name="email" placeholder="e.g. name@gmail.com">
+                <input type="text" id="company" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
               </div>
               <button type="button" class="btn btn-primary form-btn-next" onclick="nextStep(1)">Next step <span class="btn-arrow">→</span></button>
             </div>
@@ -578,6 +579,7 @@
                 <label for="notes">Notes (optional)</label>
                 <textarea id="notes" name="notes" rows="3" placeholder="Gate code, pet at home, preferred time window…"></textarea>
               </div>
+              <div id="formError" class="form-error" role="alert" style="display:none;"></div>
               <div class="form-btn-group">
                 <button type="button" class="btn btn-ghost form-btn-prev" onclick="prevStep(3)">← Back</button>
                 <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn"><span>Submit booking →</span></button>
@@ -693,6 +695,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>
