@@ -227,7 +227,7 @@ function createLightbox() {
   lightbox.innerHTML =
     '<button aria-label="Close" style="position:absolute;top:18px;right:22px;font-size:26px;color:#fff;background:none;border:none;cursor:pointer;line-height:1;padding:8px;">×</button>' +
     '<img id="lightboxImg" style="max-width:92vw;max-height:84vh;object-fit:contain;border:1px solid rgba(255,255,255,0.16);" />' +
-    '<div id="lightboxCaption" style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#a1a1aa;font-family:\'JetBrains Mono\',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;"></div>';
+    '<div id="lightboxCaption" style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#a1a1aa;font-family:Inter,sans-serif;font-size:11px;white-space:nowrap;"></div>';
   document.body.appendChild(lightbox);
 
   lightbox.querySelector('button').addEventListener('click', () => { lightbox.style.display = 'none'; });
