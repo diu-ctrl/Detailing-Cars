@@ -1,1 +1,25 @@
-.vercel
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build outputs
+.next/
+dist/
+out/
+build/
+
+# Vercel
+.vercel/
+
+# OS and system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+
+# Scratch and temp files
+scratch/
